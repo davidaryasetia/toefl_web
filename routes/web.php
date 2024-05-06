@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\TestPacketController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +14,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+Route::get('/test-packet', [TestPacketController::class, 'index']);
+Route::get('/test_packet/create', [TestPacketController::class, 'store'])->name('test_packet.create');
+
