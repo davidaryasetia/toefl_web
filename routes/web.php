@@ -17,6 +17,9 @@ use Illuminate\Support\Facades\Route;
 // Route::get('/', function () {
 //     return view('welcome');
 // });
+Route::get('/', function () {
+    return redirect('http://127.0.0.1:8000/test-packet/');
+});
 
 Route::get('/test-packet', [TestPacketController::class, 'index']);
 Route::get('/test_packet/create', [TestPacketController::class, 'store'])->name('test_packet.create');
