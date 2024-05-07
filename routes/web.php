@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DatabaseController;
 use App\Http\Controllers\TestPacketController;
 use Illuminate\Support\Facades\Route;
 
@@ -18,9 +19,11 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 Route::get('/', function () {
-    return redirect('http://127.0.0.1:8000/test-packet/');
+    return redirect('/test-packet');
 });
 
-Route::get('/test-packet', [TestPacketController::class, 'index']);
+Route::get('/test-packet', [TestPacketController::class, 'index'])->name('test.packet');
 Route::get('/test_packet/create', [TestPacketController::class, 'store'])->name('test_packet.create');
+Route::get('/check-connection', [DatabaseController::class, 'checkConnection']);
+
 

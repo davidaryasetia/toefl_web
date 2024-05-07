@@ -10,14 +10,18 @@
 
     <h1>Test Fetch Data</h1>
     <a href="{{ route('test_packet.create') }}" class="btn btn-primary">Tambah Data</a>
-    @if($data)
-        <ul>
-            @foreach($data as $item)
-            <li style="font-size: 20px">{{ $item['name']}} - {{ $item['created_at']}}</li>
-            @endforeach
-        </ul>
-    @else
-        <p>No Data Available</p>
-    @endif
+    @forelse($packet as $data)
+    <tr>
+        <td>{{$data->id}}</td>
+      <td>{{$data->name}}</td>
+      <td></td>
+      <td></td>
+     
+    </tr>
+    @empty
+    <tr>
+        <td colspan="6">Data</td>
+    </tr>
+    @endforelse
 </body>
-</html>
+<dd/html>
