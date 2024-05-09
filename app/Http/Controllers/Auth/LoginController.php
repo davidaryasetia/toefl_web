@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cookie;
 
 class LoginController extends Controller
 {
@@ -23,17 +24,26 @@ class LoginController extends Controller
         $client = new Client();
         $response = $client->post('https://vnnepnnwzlgsectnnyyc.supabase.co/auth/v1/token?grant_type=password', [
             'headers' => [
-                'apikey' => 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZubmVwbm53emxnc2VjdG5ueXljIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTQzNjIxOTAsImV4cCI6MjAyOTkzODE5MH0.IyrWPJ5CbV4wk1Q0sUwqN9Rpdt95IRJ8WQ_-BNS6gmY', 
+                'apikey' => 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZubmVwbm53emxnc2VjdG5ueXljIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTQzNjIxOTAsImV4cCI6MjAyOTkzODE5MH0.IyrWPJ5CbV4wk1Q0sUwqN9Rpdt95IRJ8WQ_-BNS6gmY',
                 'Content-Type' => 'application/json',
             ],
             'json' => $data,
         ]);
 
-        if($response->getStatusCode() == 200){
+        if ($response->getStatusCode() == 200) {
             $responseData = json_decode($response->getBody(), true);
             $token = $responseData['access_token'];
+    
+            $minutes = 60;
+            Cookie::queue('access_token', $token, $minutes);
             return redirect()->route('dashboard');
+            
+        } elseif ($response->getStatusCode() == 400){
+            $responseData = json_decode($response->getBody(), true);
+            if(isset($responseData['error']) && $responseData['error'] == "invalid_grant" && isset($responseData['error_description']) && $responseData['error_description'] == "Invalid login credentials") {
+                return redirect()->back()->withInput()->withErrors(['error' => 'Email atau password tidak valid.']);
+            }
         }
-        return redirect()->route('login')->with('error', 'Email atau password salah');
+    
     }
 }

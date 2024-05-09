@@ -50,7 +50,7 @@
                      </a>
                  </li>
                  <li class="sidebar-item">
-                     <a class="sidebar-link" href="/login" aria-expanded="false">
+                     <a class="sidebar-link" href="{{ route('logout')}}" aria-expanded="false">
                          <span>
                              <i class="ti ti-logout "></i>
                          </span>
