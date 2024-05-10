@@ -5,10 +5,25 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
-class LoginController extends Controller
+class AuthenticateController extends Controller
 {
+    public function showLoginForm()
+    {
+
+        if (Session::has('access_token')) {
+            return redirect()->route('dashboard');
+        }
+
+        header("Cache-Control: no-cache, no-store, must-revalidate");
+        header("Pragma: no-cache");
+        header("Expires: 0");
+
+        return view('auth.login');
+    }
+
     public function login(Request $request)
     {
         $request->validate([
@@ -33,17 +48,25 @@ class LoginController extends Controller
         if ($response->getStatusCode() == 200) {
             $responseData = json_decode($response->getBody(), true);
             $token = $responseData['access_token'];
-    
-            $minutes = 60;
-            Cookie::queue('access_token', $token, $minutes);
+
+            Session::put('access_token', $token);
             return redirect()->route('dashboard');
-            
-        } elseif ($response->getStatusCode() == 400){
+        } elseif ($response->getStatusCode() == 400) {
             $responseData = json_decode($response->getBody(), true);
-            if(isset($responseData['error']) && $responseData['error'] == "invalid_grant" && isset($responseData['error_description']) && $responseData['error_description'] == "Invalid login credentials") {
+            if (isset($responseData['error']) && $responseData['error'] == "invalid_grant" && isset($responseData['error_description']) && $responseData['error_description'] == "Invalid login credentials") {
                 return redirect()->back()->withInput()->withErrors(['error' => 'Email atau password tidak valid.']);
             }
         }
-    
+    }
+
+    public function destroy()
+    {
+        Session::forget('access_token');
+        Session::flush();
+        return redirect()->route('loginForm')->withHeaders([
+            'Cache-Control' => 'no-cache, no-store, must-revalidate',
+            'Pragma' => 'no-cache',
+            'Expires' => '0',
+        ]);
     }
 }

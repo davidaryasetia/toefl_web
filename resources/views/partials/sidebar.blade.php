@@ -4,7 +4,7 @@
      <div>
          <div class="brand-logo d-flex align-items-center justify-content-center mt-2">
              <a href="./index.html" class="text-nowrap logo-img">
-                 <img src="{{asset ('assets/images/logos/long-logo.png')}}" width="200" alt="" />
+                 <img src="{{ asset('assets/images/logos/long-logo.png') }}" width="200" alt="" />
              </a>
              <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
                  <i class="ti ti-x fs-8"></i>
@@ -17,7 +17,7 @@
                      <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
                      <span class="hide-menu">Home</span>
                  </li>
-                 <li class="sidebar-item {{ Request::is('/')? '' : 'selected'}}">
+                 <li class="sidebar-item {{ Request::is('/') ? '' : 'selected' }}">
                      <a class="sidebar-link" href="./" aria-expanded="false">
                          <span>
                              <i class="ti ti-layout-dashboard"></i>
@@ -44,22 +44,24 @@
                  <li class="sidebar-item">
                      <a class="sidebar-link" href="./authentication-login.html" aria-expanded="false">
                          <span>
-                            <i class="ti ti-user"></i>
+                             <i class="ti ti-user"></i>
                          </span>
                          <span class="hide-menu">Profile</span>
                      </a>
                  </li>
                  <li class="sidebar-item">
-                     <a class="sidebar-link" href="{{ route('logout')}}" aria-expanded="false">
-                         <span>
-                             <i class="ti ti-logout "></i>
-                         </span>
-                         <span class="hide-menu">Logout</span>
-                     </a>
-                 </li>
-                
+                    <a class="sidebar-link" href="#" aria-expanded="false" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                        <span>
+                            <i class="ti ti-logout "></i>
+                        </span>
+                        <span class="hide-menu">Logout</span>
+                    </a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
+                </li>
              </ul>
-             
+
          </nav>
          <!-- End Sidebar navigation -->
      </div>

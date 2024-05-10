@@ -1,10 +1,6 @@
 <?php
 
-use App\Http\Controllers\Auth\LoginController as AuthLoginController;
-use App\Http\Controllers\Auth\LogoutController;
-use App\Http\Controllers\DatabaseController;
-use App\Http\Controllers\LoginController;
-use App\Http\Controllers\TestPacketController;
+use App\Http\Controllers\Auth\AuthenticateController;
 use App\Http\Middleware\AuthenticateMiddleware;
 use Illuminate\Support\Facades\Route;
 
@@ -19,26 +15,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('auth.login');
-})->name('loginForm');
-    
-Route::post('/login', [AuthLoginController::class, 'login'])->name('login');
-Route::get('logout', [LogoutController::class, 'destroy'])->name('logout');
+Route::get('/', [AuthenticateController::class, 'showLoginForm'])->name('loginForm');
+Route::post('/login', [AuthenticateController::class, 'login'])->name('login');
+Route::post('/logout', [AuthenticateController::class, 'destroy'])->name('logout');
 
 
 Route::middleware([AuthenticateMiddleware::class])->group(function () {
-    Route::get('/dashboard', function(){
+    Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
-    
 });
-
-
-// // Route::get('/', function () {
-// //     return redirect('/test-packet');
-// // });
-
-// Route::get('/test-packet', [TestPacketController::class, 'index'])->name('test.packet');
-// Route::get('/test_packet/create', [TestPacketController::class, 'store'])->name('test_packet.create');
-// Route::get('/check-connection', [DatabaseController::class, 'checkConnection']);
