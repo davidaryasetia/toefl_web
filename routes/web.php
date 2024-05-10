@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\AuthenticateController;
+use App\Http\Controllers\TestToeflController\PaketController;
 use App\Http\Middleware\AuthenticateMiddleware;
 use Illuminate\Support\Facades\Route;
 
@@ -24,4 +25,6 @@ Route::middleware([AuthenticateMiddleware::class])->group(function () {
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
+
+    Route::resource('/PaketSoal', PaketController::class);
 });

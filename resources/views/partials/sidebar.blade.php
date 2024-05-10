@@ -17,7 +17,7 @@
                      <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
                      <span class="hide-menu">Home</span>
                  </li>
-                 <li class="sidebar-item {{ Request::is('/') ? '' : 'selected' }}">
+                 <li class="sidebar-item  {{-- {{ Request::is('/dashboard') ? '' : 'selected' }} --}}">
                      <a class="sidebar-link" href="./" aria-expanded="false">
                          <span>
                              <i class="ti ti-layout-dashboard"></i>
@@ -29,12 +29,12 @@
                      <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
                      <span class="hide-menu">Data Master Toefl</span>
                  </li>
-                 <li class="sidebar-item">
-                     <a class="sidebar-link" href="./ui-buttons.html" aria-expanded="false">
+                 <li class="sidebar-item {{-- {{ Request::is('PaketSoal*') ? '' : 'selected' }} --}}">
+                     <a class="sidebar-link" href="/PaketSoal" aria-expanded="false">
                          <span>
                              <i class="ti ti-file-text"></i>
                          </span>
-                         <span class="hide-menu">Data</span>
+                         <span class="hide-menu">Paket Soal</span>
                      </a>
                  </li>
                  <li class="nav-small-cap">
