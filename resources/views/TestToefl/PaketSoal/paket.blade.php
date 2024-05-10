@@ -1,18 +1,82 @@
 @extends('layouts.main');
 
 @section('row')
-<h1>Test Fetch Data</h1>
+    <div class="col-lg-12 d-flex align-items-stretch">
+        <div class="card w-100">
+            <div class="card-body p-4">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div class="d-flex align-items-center mb-4">
+                        <div>
+                            <span class="card-title fw-semibold me-3">Daftar Paket Soal</span>
+                        </div>
+                        <div>
+                            <a href="PaketSoal/create" type="button" class="btn btn-primary"><i class="ti ti-plus"></i> Tambah
+                                Paket</a>
+                        </div>
+                    </div>
 
-<table style="border-collapse: collapse; width: 100%">
-    <thead>
-        <tr>ID</tr>
-        <tr>Nama</tr>
-    </thead>
-    <tbody>
-        <?php foreach($data as $paket): ?>
-        <td><?php echo $paket['id']; ?></td>
-        <td><?php echo $paket['name']; ?></td>
-        <?php endforeach; ?>
-    </tbody>
-</table>
+                    @if (session('success'))
+                        <div class="alert alert-primary" style role="alert">
+                            {{ session('success') }}
+                        </div>
+                    @endif
+
+                    @if (session('error'))
+                        <div class="alert alert-danger" style role="alert">
+                            {{ session('error') }}
+                        </div>
+                    @endif
+                </div>
+
+                <div class="table-responsive">
+                    <table class="table text-nowrap mb-0 align-middle">
+                        <thead class="text-dark fs-4">
+                            <tr>
+                                <th class="border-bottom-0" style="width: 64px">
+                                    <h6 class="fw-semibold mb-0">Nomor</h6>
+                                </th>
+                                <th class="border-bottom-0">
+                                    <h6 class="fw-semibold mb-0 text-center">Paket Soal</h6>
+                                </th>
+                                <th class="border-bottom-0" style="width: 50px">
+                                    <h6 class="fw-semibold mb-0">Edit</h6>
+                                </th>
+                                <th class="border-bottom-0" style="width: 50px">
+                                    <h6 class="fw-semibold mb-0">Delete</h6>
+                                </th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach($data as $paket): ?>
+                            <tr>
+                                <td class="border-bottom-0 text-center">
+                                    <h6 class="fw-semibold mb-0 text-center"><?php echo $paket['id']; ?></h6>
+                                </td>
+                                <td class="border-bottom-0">
+                                    <h6 class="fw-semibold mb-1 text-center"><?php echo $paket['name']; ?></h6>
+                                </td>
+                                <td class="border-bottom-0" style="width: 50px;">
+                                    <p class="mb-0 fw-normal text-center"><a
+                                            href="{{ route('PaketSoal.edit', ['PaketSoal' => $paket['id']]) }}"><i
+                                                class="ti ti-pencil"></i></a></p>
+                                </td>
+                                <td class="border-bottom-0" style="width: 50px">
+                                    <form action="{{ route('PaketSoal.destroy', ['PaketSoal' => $paket['id']]) }}"
+                                        method="POST" onsubmit="return confirm('Anda yakin ingin menghapus data ini?')">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-link text-danger">
+                                            <i class="ti ti-trash"></i>
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
+                            <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection

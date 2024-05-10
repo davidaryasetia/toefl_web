@@ -27,4 +27,5 @@ Route::middleware([AuthenticateMiddleware::class])->group(function () {
     })->name('dashboard');
 
     Route::resource('/PaketSoal', PaketController::class);
+    
 });
