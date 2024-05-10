@@ -63,6 +63,7 @@ class AuthenticateController extends Controller
     {
         Session::forget('access_token');
         Session::flush();
+        Session::regenerate(true);
         return redirect()->route('loginForm')->withHeaders([
             'Cache-Control' => 'no-cache, no-store, must-revalidate',
             'Pragma' => 'no-cache',
