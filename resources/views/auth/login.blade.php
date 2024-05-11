@@ -14,11 +14,7 @@
 
 <body>
     {{-- alert --}}
-    @if (session('error'))
-        <script>
-            alert("{{ session('error') }}")
-        </script>
-    @endif
+
     <!--  Body Wrapper -->
     <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
         data-sidebar-position="fixed" data-header-position="fixed">
@@ -51,11 +47,33 @@
                                 </form>
                             </div>
                         </div>
+                        {{-- Failed Login Message --}}
+                        <div class="position-absolute top-0 end-0 p-3">
+                            @if (session('success'))
+                                <div class="alert alert-primary" style role="alert">
+                                    {{ session('success') }}
+                                </div>
+                            @endif
+
+                            @if (session('login_failed'))
+                                <div class="alert alert-danger" style role="alert">
+                                    {{ session('login_failed') }}
+                                </div>
+                            @endif
+                        </div>
+                        {{-- End Failed Login Message --}}
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <script>
+        setTimeout(function(){
+            document.querySelectorAll('.alert').forEach(function(alert){
+                alert.style.display = "none";
+            });
+        }, 5000);
+    </script>
     <script src="{{ asset('assets/libs/jquery/dist/jquery.min.js') }}"></script>
     <script src="{{ asset('assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script>
 </body>

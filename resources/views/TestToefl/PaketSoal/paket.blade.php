@@ -15,17 +15,27 @@
                         </div>
                     </div>
 
-                    @if (session('success'))
-                        <div class="alert alert-primary" style role="alert">
-                            {{ session('success') }}
-                        </div>
-                    @endif
+                    <div class="col-lg-3">
+                        @if (session('success'))
+                            <div class="alert alert-primary" style role="alert">
+                                {{ session('success') }}
+                            </div>
+                        @endif
 
-                    @if (session('error'))
-                        <div class="alert alert-danger" style role="alert">
-                            {{ session('error') }}
-                        </div>
-                    @endif
+                        @if (session('error'))
+                            <div class="alert alert-danger" style role="alert">
+                                {{ session('error') }}
+                            </div>
+                        @endif
+                    </div>
+
+                    <script>
+                        setTimeout(function() {
+                            document.querySelectorAll('.alert').forEach(function(alert) {
+                                alert.style.display = "none";
+                            });
+                        }, 5000);
+                    </script>
                 </div>
 
                 <div class="table-responsive">
@@ -64,7 +74,8 @@
                                 </td>
                                 <td class="border-bottom-0">
                                     <form action="{{ route('PaketSoal.destroy', ['PaketSoal' => $paket['id']]) }}"
-                                        method="POST" onsubmit="return confirm('Apakah Anda Yakin Ingin Menghapus Data <?php echo $paket['name']; ?> ?')">
+                                        method="POST"
+                                        onsubmit="return confirm('Apakah Anda Yakin Ingin Menghapus Data <?php echo $paket['name']; ?> ?')">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-link text-danger">
@@ -80,6 +91,4 @@
             </div>
         </div>
     </div>
-
-  
 @endsection

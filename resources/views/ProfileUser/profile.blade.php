@@ -10,22 +10,33 @@
                             <span class="card-title fw-semibold me-3">Profile User</span>
                         </div>
                         <div>
-                            <a href="{{ route('Profile.edit', ['Profile' => $dataUser[0]['id']])}}" class=""><i class="ti ti-pencil me-1"></i><span>Edit</span>
+                            <a href="{{ route('Profile.edit', ['Profile' => $dataUser[0]['id']]) }}" class=""><i
+                                    class="ti ti-pencil me-1" style="font-size: 18px"></i><span style="font-size: 14">Edit</span>
                             </a>
                         </div>
                     </div>
 
-                    @if (session('success'))
-                        <div class="alert alert-primary" style role="alert">
-                            {{ session('success') }}
-                        </div>
-                    @endif
+                    <div class="col-lg-3">
+                        @if (session('success'))
+                            <div class="alert alert-primary" style role="alert">
+                                {{ session('success') }}
+                            </div>
+                        @endif
 
-                    @if (session('error'))
-                        <div class="alert alert-danger" style role="alert">
-                            {{ session('error') }}
-                        </div>
-                    @endif
+                        @if (session('error'))
+                            <div class="alert alert-danger" style role="alert">
+                                {{ session('error') }}
+                            </div>
+                        @endif
+                    </div>
+
+                    <script>
+                        setTimeout(function() {
+                            document.querySelectorAll('.alert').forEach(function(alert) {
+                                alert.style.display = "none";
+                            });
+                        }, 5000);
+                    </script>
                 </div>
 
                 {{-- Body --}}
