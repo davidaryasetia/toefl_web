@@ -11,7 +11,7 @@
                         </a>
                     </div>
                     <div>
-                        <span class="card-title fw-semibold">Tambah Paket Soal</span>
+                        <span class="card-title fw-semibold">Edit Paket Soal</span>
                     </div>
                 </div>
 
@@ -21,12 +21,12 @@
                     <div class="mb-4 col-lg-6">
                         {{-- <label for="paket" class="form-label">id</label> --}}
                         <input type="hidden" class="form-control" id="paket" name="paket"
-                            aria-describedby="emailHelp" value="{{ $paket['id']}}">
+                            aria-describedby="emailHelp" value="{{ $paket['id'] }}">
                     </div>
                     <div class="mb-4 col-lg-6">
                         <label for="paket" class="form-label">Nama Paket</label>
                         <input type="text" class="form-control" id="paket" name="paket"
-                            aria-describedby="emailHelp" value="{{ $paket['name']}}">
+                            aria-describedby="emailHelp" value="{{ $paket['name'] }}">
                     </div>
                     <button type="Update" class="btn btn-primary">Update</button>
                 </form>

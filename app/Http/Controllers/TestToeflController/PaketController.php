@@ -111,7 +111,7 @@ class PaketController extends Controller
             ]);
         } else {
             return 'Failed to Fetch Data';
-        }
+        }   
     }
 
     /**

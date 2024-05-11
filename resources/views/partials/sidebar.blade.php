@@ -17,8 +17,8 @@
                      <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
                      <span class="hide-menu">Home</span>
                  </li>
-                 <li class="sidebar-item  {{-- {{ Request::is('/dashboard') ? '' : 'selected' }} --}}">
-                     <a class="sidebar-link" href="./" aria-expanded="false">
+                 <li class="sidebar-item">
+                     <a class="sidebar-link {{ Request::is('/dashboard') ? 'active' : ''}}" href="/dashboard" aria-expanded="false">
                          <span>
                              <i class="ti ti-layout-dashboard"></i>
                          </span>
@@ -29,8 +29,8 @@
                      <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
                      <span class="hide-menu">Data Master Toefl</span>
                  </li>
-                 <li class="sidebar-item {{-- {{ Request::is('PaketSoal*') ? '' : 'selected' }} --}}">
-                     <a class="sidebar-link" href="/PaketSoal" aria-expanded="false">
+                 <li class="sidebar-item ">
+                     <a class="sidebar-link {{Request::is('PaketSoal*') ? 'active' : ''}}" href="/PaketSoal" aria-expanded="false">
                          <span>
                              <i class="ti ti-file-text"></i>
                          </span>
@@ -42,7 +42,7 @@
                      <span class="hide-menu">AUTH</span>
                  </li>
                  <li class="sidebar-item">
-                     <a class="sidebar-link" href="./authentication-login.html" aria-expanded="false">
+                     <a class="sidebar-link {{Request::is('Profile*') ? 'active' : ''}}" href="/Profile" aria-expanded="false">
                          <span>
                              <i class="ti ti-user"></i>
                          </span>

@@ -14,6 +14,7 @@
 
 <body>
 
+
     <!--  Body Wrapper -->
     <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
         data-sidebar-position="fixed" data-header-position="fixed">
@@ -42,6 +43,21 @@
         <script src="{{ asset('assets/libs/apexcharts/dist/apexcharts.min.js') }}"></script>
         <script src="{{ asset('assets/libs/simplebar/dist/simplebar.js') }}"></script>
         <script src="{{ asset('assets/js/dashboard.js') }}"></script>
+        <link rel="stylesheet" href="https://cdn.datatables.net/2.0.7/css/dataTables.dataTables.css" />
+        <script src="https://cdn.datatables.net/2.0.7/js/dataTables.js"></script>
+        <script>
+            $(document).ready(function() {
+                $('#table_paket').DataTable({
+                    responsive: true, 
+                    columns : [
+                        { width : '6rem'}, 
+                        null, 
+                        {width : '12px'}, 
+                        {width: '12px'},
+                    ]
+                });
+            });
+        </script>
 </body>
 
 </html>
