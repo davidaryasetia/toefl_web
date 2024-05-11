@@ -31,7 +31,7 @@ class PaketController extends Controller
                 'title' => 'Paket Soal',
                 'data' => $data,
             ]);
-        } elseif ($response->status() === 400){
+        } elseif ($response->status() === 400) {
             return 'Bad Request: '. $response['message'];
         } else {
             return 'Failed Fetch Data';
@@ -54,7 +54,7 @@ class PaketController extends Controller
     public function store(Request $request)
     {
         $access_token = session('access_token');
-        if(!$access_token){
+        if(!$access_token) {
             return 'Access Token Not Found';
         }
 
@@ -66,10 +66,10 @@ class PaketController extends Controller
             'name' => $request->input('paket'),
         ]);
 
-        if ($response->successful()){
+        if ($response->successful()) {
             session()->flash('success', 'Data Paket Berhasil di Tambahkan !!!');
             return redirect('/PaketSoal');
-        } elseif ($response->status() === 400){
+        } elseif ($response->status() === 400) {
             session()->flash('error', 'Bad Request : ' . $response['message']);
             return back();
         } else {
@@ -83,7 +83,7 @@ class PaketController extends Controller
      */
     public function show($id)
     {
-        
+
     }
 
     /**
@@ -92,7 +92,7 @@ class PaketController extends Controller
     public function edit(string $id)
     {
         $access_token = session('access_token');
-        if(!$access_token){
+        if(!$access_token) {
             return 'Access Token Not Found';
         }
 
@@ -102,16 +102,16 @@ class PaketController extends Controller
             'Content-Type' => 'application/json',
         ]))->get('https://vnnepnnwzlgsectnnyyc.supabase.co/rest/v1/test_packet?id=eq.' . $id);
 
-        if ($response->successful()){
+        if ($response->successful()) {
             $data = $response->json();
 
             return view('TestToefl.PaketSoal.edit', [
-                'title' => 'Show Paket Soal', 
+                'title' => 'Show Paket Soal',
                 'paket' => $data[0],
             ]);
         } else {
             return 'Failed to Fetch Data';
-        }   
+        }
     }
 
     /**
@@ -120,22 +120,22 @@ class PaketController extends Controller
     public function update(Request $request, string $id)
     {
         $access_token = session('access_token');
-        if(!$access_token){
+        if(!$access_token) {
             return 'Access Token Not Found';
         }
 
         $response = Http::withHeaders([
-            'apikey' => 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZubmVwbm53emxnc2VjdG5ueXljIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTQzNjIxOTAsImV4cCI6MjAyOTkzODE5MH0.IyrWPJ5CbV4wk1Q0sUwqN9Rpdt95IRJ8WQ_-BNS6gmY', 
-            'Authorization' => 'Bearer ' . $access_token, 
+            'apikey' => 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZubmVwbm53emxnc2VjdG5ueXljIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTQzNjIxOTAsImV4cCI6MjAyOTkzODE5MH0.IyrWPJ5CbV4wk1Q0sUwqN9Rpdt95IRJ8WQ_-BNS6gmY',
+            'Authorization' => 'Bearer ' . $access_token,
             'Content-Type' => 'application/json',
-        ])->patch('https://vnnepnnwzlgsectnnyyc.supabase.co/rest/v1/test_packet?id=eq.' . $id,[
+        ])->patch('https://vnnepnnwzlgsectnnyyc.supabase.co/rest/v1/test_packet?id=eq.' . $id, [
             'name' => $request->input('paket'),
         ]);
 
         if ($response->successful()) {
             session()->flash('success', 'Data Paket Berhasil di Update !!!');
             return redirect('/PaketSoal');
-        } elseif ($response->status() === 400){
+        } elseif ($response->status() === 400) {
             return 'Bad Request: '. $response['message'];
         } else {
             return 'Failed Fetch Data';
@@ -149,21 +149,21 @@ class PaketController extends Controller
     public function destroy(string $id)
     {
         $access_token = session('access_token');
-        if(!$access_token){
+        if(!$access_token) {
             return 'Access Token Not Found';
         }
 
         $response = Http::withHeaders([
-            'apikey' => 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZubmVwbm53emxnc2VjdG5ueXljIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTQzNjIxOTAsImV4cCI6MjAyOTkzODE5MH0.IyrWPJ5CbV4wk1Q0sUwqN9Rpdt95IRJ8WQ_-BNS6gmY', 
-            'Authorization' => 'Bearer ' . $access_token, 
+            'apikey' => 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZubmVwbm53emxnc2VjdG5ueXljIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTQzNjIxOTAsImV4cCI6MjAyOTkzODE5MH0.IyrWPJ5CbV4wk1Q0sUwqN9Rpdt95IRJ8WQ_-BNS6gmY',
+            'Authorization' => 'Bearer ' . $access_token,
             'Content-Type' => 'application/json',
         ])->delete('https://vnnepnnwzlgsectnnyyc.supabase.co/rest/v1/test_packet?id=eq.' . $id);
-    
+
 
         if ($response->successful()) {
             session()->flash('success', 'Data Paket Soal Berhasil di Hapus !!!');
             return redirect('/PaketSoal');
-        } elseif ($response->status() === 400){
+        } elseif ($response->status() === 400) {
             return 'Bad Request: '. $response['message'];
         } else {
             return 'Failed Fetch Data';
