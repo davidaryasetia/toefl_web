@@ -18,7 +18,8 @@
                      <span class="hide-menu">Home</span>
                  </li>
                  <li class="sidebar-item">
-                     <a class="sidebar-link {{ Request::is('/dashboard') ? 'active' : ''}}" href="/dashboard" aria-expanded="false">
+                     <a class="sidebar-link {{ Request::is('/dashboard') ? 'active' : '' }}" href="/dashboard"
+                         aria-expanded="false">
                          <span>
                              <i class="ti ti-layout-dashboard"></i>
                          </span>
@@ -29,12 +30,28 @@
                      <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
                      <span class="hide-menu">Data Master Toefl</span>
                  </li>
-                 <li class="sidebar-item ">
-                     <a class="sidebar-link {{Request::is('PaketSoal*') ? 'active' : ''}}" href="/PaketSoal" aria-expanded="false">
+                 <li class="sidebar-item">
+                     <a class="sidebar-link {{ Request::is('PaketSoal*') ? 'active' : '' }}"
+                         href="{{ route('PaketSoal.index') }}" aria-expanded="false">
                          <span>
                              <i class="ti ti-file-text"></i>
                          </span>
                          <span class="hide-menu">Paket Soal</span>
+                     </a>
+                 </li>
+                 <li class="sidebar-item">
+                     <a class="sidebar-link {{ Request::is('HistoryTest*') ? 'active' : '' }}" href="/HistoryTest"
+                         aria-expanded="false">
+                         <span>
+                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                 stroke-linejoin="round">
+                                 <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                 <path d="M12 8l0 4l2 2" />
+                                 <path d="M3.05 11a9 9 0 1 1 .5 4m-.5 5v-5h5" />
+                             </svg>
+                         </span>
+                         <span class="hide-menu">History Test</span>
                      </a>
                  </li>
                  <li class="nav-small-cap">
@@ -42,7 +59,8 @@
                      <span class="hide-menu">AUTH</span>
                  </li>
                  <li class="sidebar-item">
-                     <a class="sidebar-link {{Request::is('Profile*') ? 'active' : ''}}" href="/Profile" aria-expanded="false">
+                     <a class="sidebar-link {{ Request::is('Profile*') ? 'active' : '' }}" href="/Profile"
+                         aria-expanded="false">
                          <span>
                              <i class="ti ti-user"></i>
                          </span>
@@ -50,16 +68,17 @@
                      </a>
                  </li>
                  <li class="sidebar-item">
-                    <a class="sidebar-link" href="#" aria-expanded="false" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                        <span>
-                            <i class="ti ti-logout "></i>
-                        </span>
-                        <span class="hide-menu">Logout</span>
-                    </a>
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                        @csrf
-                    </form>
-                </li>
+                     <a class="sidebar-link" href="#" aria-expanded="false"
+                         onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                         <span>
+                             <i class="ti ti-logout"></i>
+                         </span>
+                         <span class="hide-menu">Logout</span>
+                     </a>
+                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                         @csrf
+                     </form>
+                 </li>
              </ul>
 
          </nav>
