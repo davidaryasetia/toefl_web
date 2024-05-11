@@ -38,21 +38,7 @@ class AuthenticateController extends Controller
             'email' => $request->email, 
             'password' => $request->password,
         ]);
-
-        if($response->status() == 200){
-            $responseData = $response->json();
-            $token = $responseData['access_token'];
-
-            Session::put('access_token', $token);
-            return redirect()->route('dashboard');
-        } elseif ($response->status() == 400){
-            $responseData = $response->json();
-
-            if(isset($responseData['error']) && $responseData['error'] == "invalid_grant" && isset($responseData['error_description']) && $responseData['error_description'] == "Invalid login credentials"){
-                session()->flash('login_failed', 'Login Gagal, Gunakan Email dan Password yang benar !!!');
-                return redirect()->route('loginForm');
-            }
-        }
+    
     }
 
     public function destroy()

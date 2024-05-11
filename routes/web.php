@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\AuthenticateController;
 use App\Http\Controllers\Auth\UserController;
 use App\Http\Controllers\TestToeflController\DataSoalController;
+use App\Http\Controllers\HistoryController;
 use App\Http\Controllers\TestToeflController\PaketController;
 use App\Http\Middleware\AuthenticateMiddleware;
 use Illuminate\Support\Facades\Route;
@@ -22,7 +23,6 @@ Route::get('/', [AuthenticateController::class, 'showLoginForm'])->name('loginFo
 Route::post('/login', [AuthenticateController::class, 'login'])->name('login');
 Route::post('/logout', [AuthenticateController::class, 'destroy'])->name('logout');
 
-
 Route::middleware([AuthenticateMiddleware::class])->group(function () {
     Route::get('/dashboard', function () {
         return view('dashboard');
@@ -31,4 +31,5 @@ Route::middleware([AuthenticateMiddleware::class])->group(function () {
     Route::resource('/PaketSoal', PaketController::class);
     Route::resource('/Profile', UserController::class);
     Route::resource('/DataSoal', DataSoalController::class);
+    Route::resource('/HistoryTest', HistoryController::class)->only(['index', 'destroy']);
 });

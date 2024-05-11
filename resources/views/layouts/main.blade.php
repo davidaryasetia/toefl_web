@@ -47,13 +47,41 @@
         <script src="https://cdn.datatables.net/2.0.7/js/dataTables.js"></script>
         <script>
             $(document).ready(function() {
+                $('#table_history').DataTable({
+                    responsive: true,
+                    columns: [{
+                            width: '10px'
+                        },
+                        null,
+                        {
+                            width: '36px'
+                        },
+                        {
+                            width: '36px'
+                        },
+                        {
+                            width: '36px'
+                        },
+                        {
+                            width: '36px'
+                        },
+                        {
+                            width: '12px'
+                        },
+                    ]
+                });
                 $('#table_paket').DataTable({
-                    responsive: true, 
-                    columns : [
-                        { width : '6rem'}, 
-                        null, 
-                        {width : '12px'}, 
-                        {width: '12px'},
+                    responsive: true,
+                    columns: [{
+                            width: '6rem'
+                        },
+                        null,
+                        {
+                            width: '12px'
+                        },
+                        {
+                            width: '12px'
+                        },
                     ]
                 });
             });
