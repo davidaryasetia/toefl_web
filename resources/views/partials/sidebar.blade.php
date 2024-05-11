@@ -18,7 +18,8 @@
                      <span class="hide-menu">Home</span>
                  </li>
                  <li class="sidebar-item">
-                     <a class="sidebar-link {{ Request::is('/dashboard') ? 'active' : ''}}" href="/dashboard" aria-expanded="false">
+                     <a class="sidebar-link {{ Request::is('/dashboard') ? 'active' : '' }}" href="/dashboard"
+                         aria-expanded="false">
                          <span>
                              <i class="ti ti-layout-dashboard"></i>
                          </span>
@@ -30,11 +31,20 @@
                      <span class="hide-menu">Data Master Toefl</span>
                  </li>
                  <li class="sidebar-item ">
-                     <a class="sidebar-link {{Request::is('PaketSoal*') ? 'active' : ''}}" href="/PaketSoal" aria-expanded="false">
+                     <a class="sidebar-link {{ Request::is('PaketSoal*') ? 'active' : '' }}" href="/PaketSoal"
+                         aria-expanded="false">
                          <span>
                              <i class="ti ti-file-text"></i>
                          </span>
                          <span class="hide-menu">Paket Soal</span>
+                     </a>
+                 </li>
+                 <li class="sidebar-item">
+                     <a class="sidebar-link" href="/MasterSoal" aria-expanded="false">
+                         <span>
+                             <i class="ti ti-clipboard-text"></i>
+                         </span>
+                         <span class="hide-menu">Data Master</span>
                      </a>
                  </li>
                  <li class="nav-small-cap">
@@ -42,7 +52,8 @@
                      <span class="hide-menu">AUTH</span>
                  </li>
                  <li class="sidebar-item">
-                     <a class="sidebar-link {{Request::is('Profile*') ? 'active' : ''}}" href="/Profile" aria-expanded="false">
+                     <a class="sidebar-link {{ Request::is('Profile*') ? 'active' : '' }}" href="/Profile"
+                         aria-expanded="false">
                          <span>
                              <i class="ti ti-user"></i>
                          </span>
@@ -50,16 +61,18 @@
                      </a>
                  </li>
                  <li class="sidebar-item">
-                    <a class="sidebar-link" href="#" aria-expanded="false" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                        <span>
-                            <i class="ti ti-logout "></i>
-                        </span>
-                        <span class="hide-menu">Logout</span>
-                    </a>
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                        @csrf
-                    </form>
-                </li>
+                     <a class="sidebar-link" href="#" aria-expanded="false"
+                         onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                         <span>
+                             <i class="ti ti-logout "></i>
+                         </span>
+                         <span class="hide-menu">Logout</span>
+                     </a>
+
+                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                         @csrf
+                     </form>
+                 </li>
              </ul>
 
          </nav>

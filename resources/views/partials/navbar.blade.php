@@ -25,7 +25,7 @@
                     <div class="flex-grow-1 me-3">
                         <span class="fw-semibold d-block" id="navbar-username"></span>
                         <script>
-                            const access_token = '{{ session('access_token') }}';
+                            const access_token = '{{ session('access_token') }}'
                             fetch('https://vnnepnnwzlgsectnnyyc.supabase.co/rest/v1/users', {
                                     method: 'GET',
                                     headers: {

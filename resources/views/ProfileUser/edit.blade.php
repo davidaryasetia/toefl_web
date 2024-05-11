@@ -1,4 +1,4 @@
-@extends('layouts.main');
+@extends('layouts.main')
 
 @section('row')
     <div class="col-lg-12 d-flex align-items-stretch">
