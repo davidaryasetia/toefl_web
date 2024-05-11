@@ -40,25 +40,24 @@
                      </a>
                  </li>
                  <li class="sidebar-item">
-                     <a class="sidebar-link" href="/MasterSoal" aria-expanded="false">
+                     <a class="sidebar-link" href="/DataSoal" aria-expanded="false">
                          <span>
                              <i class="ti ti-clipboard-text"></i>
                          </span>
-                         <span class="hide-menu">Data Master</span>
+                         <span class="hide-menu">Data Master Soal</span>
+                     </a>
+                 </li>
+
+                 <li class="sidebar-item">
                      <a class="sidebar-link {{ Request::is('HistoryTest*') ? 'active' : '' }}" href="/HistoryTest"
                          aria-expanded="false">
                          <span>
-                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                 stroke-linejoin="round">
-                                 <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                 <path d="M12 8l0 4l2 2" />
-                                 <path d="M3.05 11a9 9 0 1 1 .5 4m-.5 5v-5h5" />
-                             </svg>
+                            <i class="ti ti-history"></i>
                          </span>
                          <span class="hide-menu">History Test</span>
                      </a>
                  </li>
+
                  <li class="nav-small-cap">
                      <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
                      <span class="hide-menu">AUTH</span>

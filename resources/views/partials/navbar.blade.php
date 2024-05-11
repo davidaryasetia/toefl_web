@@ -25,8 +25,9 @@
                     <div class="flex-grow-1 me-3">
                         <span class="fw-semibold d-block" id="navbar-username"></span>
                         <script>
-                            const access_token = '{{ session('access_token') }}'
-                            fetch('https://vnnepnnwzlgsectnnyyc.supabase.co/rest/v1/users', {
+                            const access_token = '{{ session('access_token') }}';
+                            const idUser = '{{session('idUser')}}'
+                            fetch('https://vnnepnnwzlgsectnnyyc.supabase.co/rest/v1/users?id=eq.'+idUser, {
                                     method: 'GET',
                                     headers: {
                                         'apikey': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZubmVwbm53emxnc2VjdG5ueXljIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTQzNjIxOTAsImV4cCI6MjAyOTkzODE5MH0.IyrWPJ5CbV4wk1Q0sUwqN9Rpdt95IRJ8WQ_-BNS6gmY',

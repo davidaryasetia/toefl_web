@@ -43,7 +43,8 @@
                                     </ul>
 
 
-                                    <form action="{{ route('Profile.update', ['Profile' => $datauser['id']]) }}" method="POST">
+                                    <form action="{{ route('Profile.update', ['Profile' => $datauser['id']]) }}"
+                                        method="POST">
                                         @csrf
                                         @method('PATCH')
                                         <div class="row mb-3 pt-4">

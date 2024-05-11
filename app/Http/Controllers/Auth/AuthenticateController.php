@@ -34,11 +34,27 @@ class AuthenticateController extends Controller
         $response = Http::withHeaders([
             'apikey' => 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZubmVwbm53emxnc2VjdG5ueXljIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTQzNjIxOTAsImV4cCI6MjAyOTkzODE5MH0.IyrWPJ5CbV4wk1Q0sUwqN9Rpdt95IRJ8WQ_-BNS6gmY',
             'Content-Type' => 'application/json',
-        ])->post('https://vnnepnnwzlgsectnnyyc.supabase.co/auth/v1/token?grant_type=password',[
-            'email' => $request->email, 
+        ])->post('https://vnnepnnwzlgsectnnyyc.supabase.co/auth/v1/token?grant_type=password', [
+            'email' => $request->email,
             'password' => $request->password,
         ]);
-    
+
+        if($response->status() == 200) {
+            $responseData = $response->json();
+            $token = $responseData['access_token'];
+            $idUser = $responseData['user']['id'];
+
+            Session::put('access_token', $token);
+            Session::put('idUser', $idUser);
+            return redirect()->route('dashboard');
+        } elseif ($response->status() == 400) {
+            $responseData = $response->json();
+
+            if(isset($responseData['error']) && $responseData['error'] == "invalid_grant" && isset($responseData['error_description']) && $responseData['error_description'] == "Invalid login credentials") {
+                session()->flash('login_failed', 'Login Gagal, Gunakan Email dan Password yang benar !!!');
+                return redirect()->route('loginForm');
+            }
+        }
     }
 
     public function destroy()

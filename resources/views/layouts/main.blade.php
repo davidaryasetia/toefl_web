@@ -84,6 +84,10 @@
                         },
                     ]
                 });
+                $('#table_master').DataTable({
+                    // responsive: true,
+                    autoWidth: false,
+                });
             });
         </script>
 </body>

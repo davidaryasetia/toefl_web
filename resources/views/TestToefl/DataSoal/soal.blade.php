@@ -39,7 +39,7 @@
                 </div>
 
                 <div class="table-responsive">
-                    <table id="table_paket" class="table table-hover table-bordered text-nowrap mb-0 align-middle">
+                    <table id="table_master" class="table table-hover table-bordered text-nowrap mb-0 align-middle">
 
                         <thead class="text-dark fs-4">
                             <tr>
@@ -47,7 +47,13 @@
                                     <h6 class="fw-semibold mb-0">Nomor</h6>
                                 </th>
                                 <th class="border-bottom-0">
-                                    <h6 class="fw-semibold mb-0 text-center">Paket Soal</h6>
+                                    <h6 class="fw-semibold mb-0 text-left">Question</h6>
+                                </th>
+                                <th class="border-bottom-0">
+                                    <h6 class="fw-semibold mb-0 text-center">Type Question</h6>
+                                </th>
+                                <th class="border-bottom-0">
+                                    <h6 class="fw-semibold mb-0 text-center">Paket</h6>
                                 </th>
                                 <th class="border-bottom-0">
                                     <h6 class="fw-semibold mb-0">Edit</h6>
@@ -59,7 +65,38 @@
                             </tr>
                         </thead>
                         <tbody>
-                            
+                            <?php foreach($data as $dataSoal): ?>
+                            <tr>
+                                <td class="border-bottom-0 text-center" style="width: 12px">
+                                    <h6 class="fw-semibold mb-0"><?php echo $dataSoal['id']; ?></h6>
+                                </td>
+                                <td class="" style="width: 100%; white-space: pre-line; word-wrap: break-word; text-align: justify; color: black">
+                                    <span style="text-align: justify"><?php echo $dataSoal['question']; ?></span>
+                                </td>
+                                <td class="border-bottom-0" style="width: 12px">
+                                    <h6 class="fw-semibold mb-1 text-center"><?php echo $dataSoal['type']['name']; ?></h6>
+                                </td>
+                                <td class="border-bottom-0">
+                                    <h6 class="fw-semibold mb-1 text-center"><?php echo $dataSoal['test_packet']['name']; ?></h6>
+                                </td>
+                                <td class="border-bottom-0">
+                                    <p class="mb-0 fw-normal text-center"><a
+                                            href="{{ route('PaketSoal.edit', ['PaketSoal' => $dataSoal['id']]) }}"><i
+                                                class="ti ti-pencil"></i></a></p>
+                                </td>
+                                <td class="border-bottom-0">
+                                    <form action="{{ route('PaketSoal.destroy', ['PaketSoal' => $dataSoal['id']]) }}"
+                                        method="POST"
+                                        onsubmit="return confirm('Apakah Anda Yakin Ingin Menghapus Data <?php echo $dataSoal['question']; ?> ?')">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-link text-danger">
+                                            <i class="ti ti-trash"></i>
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
+                            <?php endforeach; ?>
                         </tbody>
                     </table>
                 </div>
