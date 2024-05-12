@@ -49,7 +49,9 @@ class DataSoalController extends Controller
      */
     public function create()
     {
-        //
+        return view('TestToefl.DataSoal.create',[
+            'title' => 'Tambah Soal'
+        ]);
     }
 
     /**

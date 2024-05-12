@@ -5,6 +5,7 @@ namespace App\Http\Controllers\TestToeflController;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Session;
 
 class PaketController extends Controller
 {
@@ -24,9 +25,15 @@ class PaketController extends Controller
             'Content-Type' => 'application/json',
         ])->get('https://vnnepnnwzlgsectnnyyc.supabase.co/rest/v1/test_packet?select=id,name');
 
+
         if ($response->successful()) {
             $data = $response->json();
 
+            // kirim ke DataServiceProvider
+            app()->singleton('dataPaket', function() use ($data){
+                return $data;
+            });
+        
             return view('TestToefl.PaketSoal.paket', [
                 'title' => 'Paket Soal',
                 'data' => $data,

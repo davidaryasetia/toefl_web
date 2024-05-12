@@ -15,12 +15,6 @@
                         </div>
                     </div>
 
-                    @if (session('success'))
-                        <div class="alert alert-primary" style role="alert">
-                            {{ session('success') }}
-                        </div>
-                    @endif
-
                     <div>
                         @if (session('success'))
                             <div class="alert alert-primary" style role="alert">

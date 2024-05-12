@@ -28,7 +28,7 @@
                  </li>
                  <li class="nav-small-cap">
                      <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
-                     <span class="hide-menu">Data Master Toefl</span>
+                     <span class="hide-menu">Data Test Toefl</span>
                  </li>
                  <li class="sidebar-item ">
                      <a class="sidebar-link {{ Request::is('PaketSoal*') ? 'active' : '' }}" href="/PaketSoal"
@@ -40,7 +40,7 @@
                      </a>
                  </li>
                  <li class="sidebar-item">
-                     <a class="sidebar-link" href="/DataSoal" aria-expanded="false">
+                     <a class="sidebar-link {{ Request::is('DataSoal*') ? 'active' : ''}}" href="/DataSoal" aria-expanded="false">
                          <span>
                              <i class="ti ti-clipboard-text"></i>
                          </span>

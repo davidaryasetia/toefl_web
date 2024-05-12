@@ -10,8 +10,8 @@
                             <span class="card-title fw-semibold me-3">Data Master Soal</span>
                         </div>
                         <div>
-                            <a href="PaketSoal/create" type="button" class="btn btn-primary"><i class="ti ti-plus"></i> Tambah
-                                Paket</a>
+                            <a href="DataSoal/create" type="button" class="btn btn-primary"><i class="ti ti-plus"></i> Tambah
+                                Data Question</a>
                         </div>
                     </div>
 

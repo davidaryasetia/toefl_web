@@ -1,100 +1,65 @@
+{{-- Ambil data sesi paket --}}
+@php
+$dataPaket = app('dataPaket');
+$dataTipe = app('dataTipe'); 
+@endphp
+
+{{-- testing --}}
+{{-- @dd($dataTipe) --}}
+
 @extends('layouts.main')
 
 @section('row')
     <div class="col-lg-12 d-flex align-items-stretch">
         <div class="card w-100">
             <div class="card-body p-4">
-                <div class="d-flex justify-content-between align-items-center">
-                    <div class="d-flex align-items-center mb-4">
-                        <div>
-                            <span class="card-title fw-semibold me-3">Daftar Paket Soal</span>
-                        </div>
-                        <div>
-                            <a href="PaketSoal/create" type="button" class="btn btn-primary"><i class="ti ti-plus"></i> Tambah
-                                Paket</a>
-                        </div>
+                <div class="d-flex align-items-center mb-4">
+                    <div>
+                        <a href="/DataSoal" class="d-flex align-items-center"><i class="ti ti-arrow-left me-3"
+                                style="font-size: 20px; color: black"></i>
+                        </a>
                     </div>
-
-                    <div class="col-lg-3">
-                        @if (session('success'))
-                            <div class="alert alert-primary" style role="alert">
-                                {{ session('success') }}
-                            </div>
-                        @endif
-
-                        @if (session('error'))
-                            <div class="alert alert-danger" style role="alert">
-                                {{ session('error') }}
-                            </div>
-                        @endif
+                    <div>
+                        <span class="card-title fw-semibold">Add Question</span>
                     </div>
-
-                    <script>
-                        setTimeout(function() {
-                            document.querySelectorAll('.alert').forEach(function(alert) {
-                                alert.style.display = "none";
-                            });
-                        }, 5000);
-                    </script>
                 </div>
 
-                <div class="table-responsive">
-                    <table id="table_paket" class="table table-hover table-bordered text-nowrap mb-0 align-middle">
+                <form action="" method="POST">
+                    {{-- @csrf --}}
+                    <div class="row">
+                        <div class="mb-4 col-lg-12">
+                            <label for="paket" class="form-label">Input Question</label>
+                            <textarea type="text" class="form-control" id="question" name="question" aria-describedby="emailHelp"
+                                placeholder="Input Question....."></textarea>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="mb-4 col-lg-6">
+                            <label for="paket" class="form-label">Packet Question</label>
+                            <div class="">
+                                <select id="packet_id" name="packet_id" class="form-select">
+                                    <option>Choice Packet Question</option>
+                                    @foreach ($dataPaket['data'] as $item)
+                                        <option value="{{ $item['id'] }}">{{ $item['name'] }}</option>
+                                    @endforeach
 
-                        <thead class="text-dark fs-4">
-                            <tr>
-                                <th class="border-bottom-0 text-center" style="width: 10px">
-                                    <h6 class="fw-semibold mb-0">Nomor</h6>
-                                </th>
-                                <th class="border-bottom-0">
-                                    <h6 class="fw-semibold mb-0 text-center">Paket Soal</h6>
-                                </th>
-                                <th class="border-bottom-0">
-                                    <h6 class="fw-semibold mb-0">Edit</h6>
-                                </th>
-                                <th class="border-bottom-0">
-                                    <h6 class="fw-semibold mb-0">Delete</h6>
-                                </th>
-
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php foreach($data as $paket): ?>
-                            <tr>
-                                <td class="border-bottom-0 text-center">
-                                    <h6 class="fw-semibold mb-0"><?php echo $paket['id']; ?></h6>
-                                </td>
-                                <td class="border-bottom-0">
-                                    <div class="p-3">
-                                        <h6 class="fw-semibold mb-1 text-center"><?php echo $paket['name']; ?></h6>
-                                    <ul>
-                                        <li style="list-style: disc">Listening</li>
-                                        <li style="list-style: disc">Structure</li>
-                                        <li style="list-style: disc">Reading</li>
-                                    </ul>
-                                </div>
-                                </td>
-                                <td class="border-bottom-0">
-                                    <p class="mb-0 fw-normal text-center"><a
-                                            href="{{ route('PaketSoal.edit', ['PaketSoal' => $paket['id']]) }}"><i
-                                                class="ti ti-pencil"></i></a></p>
-                                </td>
-                                <td class="border-bottom-0">
-                                    <form action="{{ route('PaketSoal.destroy', ['PaketSoal' => $paket['id']]) }}"
-                                        method="POST"
-                                        onsubmit="return confirm('Apakah Anda Yakin Ingin Menghapus Data <?php echo $paket['name']; ?> ?')">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-link text-danger">
-                                            <i class="ti ti-trash"></i>
-                                        </button>
-                                    </form>
-                                </td>
-                            </tr>
-                            <?php endforeach; ?>
-                        </tbody>
-                    </table>
-                </div>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="mb-4 col-lg-6">
+                            <label for="paket" class="form-label">Type Question</label>
+                            <div class="">
+                                <select id="defaultSelect" id="type_id" name="type_id" class="form-select">
+                                    <option>Type Question</option>
+                                    @foreach ($dataTipe['dataTipe'] as $item)
+                                    <option value="{{ $item['id'] }}">{{ $item['name'] }}</option>
+                                @endforeach
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
             </div>
         </div>
     </div>
