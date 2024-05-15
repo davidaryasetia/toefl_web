@@ -81,13 +81,13 @@
                                 </td>
                                 <td class="border-bottom-0">
                                     <p class="mb-0 fw-normal text-center"><a
-                                            href="{{ route('PaketSoal.edit', ['PaketSoal' => $dataSoal['id']]) }}"><i
+                                            href="{{ route('DataSoal.edit', ['DataSoal' => $dataSoal['id']]) }}"><i
                                                 class="ti ti-pencil"></i></a></p>
                                 </td>
                                 <td class="border-bottom-0">
-                                    <form action="{{ route('PaketSoal.destroy', ['PaketSoal' => $dataSoal['id']]) }}"
+                                    <form action="{{ route('DataSoal.destroy', ['DataSoal' => $dataSoal['id']]) }}"
                                         method="POST"
-                                        onsubmit="return confirm('Apakah Anda Yakin Ingin Menghapus Data <?php echo $dataSoal['question']; ?> ?')">
+                                        onsubmit="return confirm('Apakah Anda Yakin Ingin Menghapus Data Soal : <?php echo $dataSoal['question']; ?> ?')">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-link text-danger">

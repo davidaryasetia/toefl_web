@@ -1,7 +1,7 @@
 {{-- Ambil data sesi paket --}}
 @php
-$dataPaket = app('dataPaket');
-$dataTipe = app('dataTipe'); 
+    $dataPaket = app('dataPaket');
+    $dataTipe = app('dataTipe');
 @endphp
 
 {{-- testing --}}
@@ -24,8 +24,8 @@ $dataTipe = app('dataTipe');
                     </div>
                 </div>
 
-                <form action="" method="POST">
-                    {{-- @csrf --}}
+                <form action="{{ route('DataSoal.store') }}" method="POST">
+                    @csrf
                     <div class="row">
                         <div class="mb-4 col-lg-12">
                             <label for="paket" class="form-label">Input Question</label>
@@ -51,9 +51,9 @@ $dataTipe = app('dataTipe');
                             <div class="">
                                 <select id="defaultSelect" id="type_id" name="type_id" class="form-select">
                                     <option>Type Question</option>
-                                    @foreach ($dataTipe['dataTipe'] as $item)
-                                    <option value="{{ $item['id'] }}">{{ $item['name'] }}</option>
-                                @endforeach
+                                    @foreach ($dataTipe['dataTipe'] as $type)
+                                        <option value="{{ $type['id'] }}">{{ $type['name'] }}</option>
+                                    @endforeach
                                 </select>
                             </div>
                         </div>
