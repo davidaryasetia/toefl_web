@@ -31,5 +31,6 @@ Route::middleware([AuthenticateMiddleware::class])->group(function () {
     Route::resource('/PaketSoal', PaketController::class);
     Route::resource('/Profile', UserController::class);
     Route::resource('/DataSoal', DataSoalController::class);
+    Route::get('/DataSoal', [DataSoalController::class, 'index'])->name('DataSoal.index');
     Route::resource('/HistoryTest', HistoryController::class)->only(['index', 'destroy']);
 });

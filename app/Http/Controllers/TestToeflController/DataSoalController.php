@@ -11,7 +11,7 @@ class DataSoalController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         $access_token = session('access_token');
         
@@ -19,13 +19,27 @@ class DataSoalController extends Controller
             return 'Access Token not found';
         }
 
+        $packet_id = request()->input('packet_id');
+        $type_id = request()->input('type_id');
+
+        $query = [
+            'select' => 'id,question,type_id,packet_id,type(id,name),test_packet(id,name)',
+        ];
+
+        if ($packet_id){
+            $query['packet_id'] = 'eq.' . $packet_id;
+        }
+
+        if ($type_id){
+            $query['type_id'] = 'eq.' . $type_id;
+        }
+    
+
         $response = Http::withHeaders([
             'apikey' => 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZubmVwbm53emxnc2VjdG5ueXljIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTQzNjIxOTAsImV4cCI6MjAyOTkzODE5MH0.IyrWPJ5CbV4wk1Q0sUwqN9Rpdt95IRJ8WQ_-BNS6gmY',
             'Authorization' => 'Bearer ' . $access_token,
             'Content-Type' => 'application/json',
-        ])->get('https://vnnepnnwzlgsectnnyyc.supabase.co/rest/v1/test_question?', [
-            'select' => 'id,question,type_id,packet_id,type(id,name),test_packet(id,name)'
-        ]);
+        ])->get('https://vnnepnnwzlgsectnnyyc.supabase.co/rest/v1/test_question?', $query);
 
         if ($response->successful()){
             $data = $response->json();
@@ -33,15 +47,16 @@ class DataSoalController extends Controller
             return view('TestToefl.DataSoal.soal',[
                 'title' => 'Data Master Soal',
                 'data' => $data,
+                'packet_id' => $packet_id, 
+                'type_id' => $type_id
             ]);
         } elseif ($response->status() === 400){
+            var_dump($packet_id);
+            var_dump($packet_id);
             return 'Bad Request: '. $response['message'];
         } else {
             return 'Failed Fetch Data';
         }
-
-
-        
     }
 
     /**
@@ -75,7 +90,7 @@ class DataSoalController extends Controller
         ]);
 
         if ($response->successful()) {
-            session()->flash('success', 'Data Paket Berhasil di Tambahkan !!!');
+            session()->flash('success', 'Data Packet Successfully Added !!!');
             return redirect('/DataSoal');
         } elseif ($response->status() === 400) {
             session()->flash('error', 'Bad Request : ' . $response['message']);
@@ -143,7 +158,7 @@ class DataSoalController extends Controller
         ]);
 
         if($response->successful()){
-            session()->flash('success', 'Data Paket Berhasil di Update');
+            session()->flash('success', 'Data Question Successfully Update !!!');
             return redirect('/DataSoal');
         } elseif ($response->status() === 400){
             return 'Bad Request: ' . $response['message'];
@@ -169,7 +184,7 @@ class DataSoalController extends Controller
         ])->delete('https://vnnepnnwzlgsectnnyyc.supabase.co/rest/v1/test_question?id=eq.' . $id);
 
         if ($response->successful()){
-            session()->flash('success', 'Data Soal Berhasil di Hapus');
+            session()->flash('success', 'Data Question Successfully Delete !!!');
             return redirect('/DataSoal');
         } elseif ($response->status() === 400){
             return 'Bad Request: ' . $response['message'];

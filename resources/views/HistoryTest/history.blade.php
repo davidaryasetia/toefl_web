@@ -7,7 +7,7 @@
                 <div class="d-flex justify-content-between align-items-center">
                     <div class="d-flex align-items-center mb-4">
                         <div>
-                            <span class="card-title fw-semibold me-3">Daftar history test</span>
+                            <span class="card-title fw-semibold me-3">List history test</span>
                         </div>
                     </div>
 
@@ -38,10 +38,10 @@
                         <thead class="text-dark fs-4">
                             <tr>
                                 <th class="border-bottom-0 text-center" style="width: 10px">
-                                    <h6 class="fw-semibold mb-0">Nomor</h6>
+                                    <h6 class="fw-semibold mb-0">No</h6>
                                 </th>
                                 <th class="border-bottom-0">
-                                    <h6 class="fw-semibold mb-0 text-center">Nama</h6>
+                                    <h6 class="fw-semibold mb-0 text-center">Name</h6>
                                 </th>
                                 <th class="border-bottom-0">
                                     <h6 class="fw-semibold mb-0">Skor listening</h6>
@@ -56,7 +56,7 @@
                                     <h6 class="fw-semibold mb-0">Total skor</h6>
                                 </th>
                                 <th class="border-bottom-0">
-                                    <h6 class="fw-semibold mb-0">Hapus</h6>
+                                    <h6 class="fw-semibold mb-0">Delete</h6>
                                 </th>
                             </tr>
                         </thead>

@@ -7,11 +7,10 @@
                 <div class="d-flex justify-content-between align-items-center">
                     <div class="d-flex align-items-center mb-4">
                         <div>
-                            <span class="card-title fw-semibold me-3">Daftar Paket Soal</span>
+                            <span class="card-title fw-semibold me-3">List Question Packet</span>
                         </div>
                         <div>
-                            <a href="PaketSoal/create" type="button" class="btn btn-primary"><i class="ti ti-plus"></i> Tambah
-                                Paket</a>
+                            <a href="PaketSoal/create" type="button" class="btn btn-primary"><i class="ti ti-plus"></i>Add Packet</a>
                         </div>
                     </div>
 
@@ -43,10 +42,10 @@
                         <thead class="text-dark fs-4">
                             <tr>
                                 <th class="border-bottom-0 text-center" style="width: 10px">
-                                    <h6 class="fw-semibold mb-0">Nomor</h6>
+                                    <h6 class="fw-semibold mb-0">No</h6>
                                 </th>
                                 <th class="border-bottom-0">
-                                    <h6 class="fw-semibold mb-0 text-center">Paket Soal</h6>
+                                    <h6 class="fw-semibold mb-0 text-center">Question Packet</h6>
                                 </th>
                                 <th class="border-bottom-0">
                                     <h6 class="fw-semibold mb-0">Edit</h6>
@@ -66,11 +65,6 @@
                                 <td class="border-bottom-0">
                                     <div class="p-3">
                                         <h6 class="fw-semibold mb-1 text-center"><?php echo $paket['name']; ?></h6>
-                                        <ul>
-                                            <li style="list-style: disc">Listening</li>
-                                            <li style="list-style: disc">Structure</li>
-                                            <li style="list-style: disc">Reading</li>
-                                        </ul>
                                     </div>
                                 </td>
                                 <td class="border-bottom-0">
@@ -81,7 +75,7 @@
                                 <td class="border-bottom-0">
                                     <form action="{{ route('PaketSoal.destroy', ['PaketSoal' => $paket['id']]) }}"
                                         method="POST"
-                                        onsubmit="return confirm('Apakah Anda Yakin Ingin Menghapus Data <?php echo $paket['name']; ?> ?')">
+                                        onsubmit="return confirm('Are you sure you want to delete this data <?php echo $paket['name']; ?> ?')">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-link text-danger">

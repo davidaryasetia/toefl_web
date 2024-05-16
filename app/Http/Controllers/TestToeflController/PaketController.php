@@ -74,7 +74,7 @@ class PaketController extends Controller
         ]);
 
         if ($response->successful()) {
-            session()->flash('success', 'Data Paket Berhasil di Tambahkan !!!');
+            session()->flash('success', 'Data Packet Successfully Added!!!');
             return redirect('/PaketSoal');
         } elseif ($response->status() === 400) {
             session()->flash('error', 'Bad Request : ' . $response['message']);
@@ -140,7 +140,7 @@ class PaketController extends Controller
         ]);
 
         if ($response->successful()) {
-            session()->flash('success', 'Data Paket Berhasil di Update !!!');
+            session()->flash('success', 'Data Packet Successfully Updated!!!');
             return redirect('/PaketSoal');
         } elseif ($response->status() === 400) {
             return 'Bad Request: '. $response['message'];
@@ -168,7 +168,7 @@ class PaketController extends Controller
 
 
         if ($response->successful()) {
-            session()->flash('success', 'Data Paket Soal Berhasil di Hapus !!!');
+            session()->flash('success', 'Data Packet Successfully Delete!!!');
             return redirect('/PaketSoal');
         } elseif ($response->status() === 400) {
             return 'Bad Request: '. $response['message'];

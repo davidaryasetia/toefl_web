@@ -36,7 +36,7 @@
                          <span>
                              <i class="ti ti-file-text"></i>
                          </span>
-                         <span class="hide-menu">Paket Soal</span>
+                         <span class="hide-menu">Question Packet</span>
                      </a>
                  </li>
                  <li class="sidebar-item">
@@ -44,7 +44,7 @@
                          <span>
                              <i class="ti ti-clipboard-text"></i>
                          </span>
-                         <span class="hide-menu">Data Master Soal</span>
+                         <span class="hide-menu">Master Question</span>
                      </a>
                  </li>
 
@@ -61,6 +61,15 @@
                  <li class="nav-small-cap">
                      <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
                      <span class="hide-menu">AUTH</span>
+                 </li>
+                 <li class="sidebar-item">
+                     <a class="sidebar-link {{ Request::is('Profile*') ? 'active' : '' }}" href="/Profile"
+                         aria-expanded="false">
+                         <span>
+                             <i class="ti ti-user"></i>
+                         </span>
+                         <span class="hide-menu">Data Admin</span>
+                     </a>
                  </li>
                  <li class="sidebar-item">
                      <a class="sidebar-link {{ Request::is('Profile*') ? 'active' : '' }}" href="/Profile"
