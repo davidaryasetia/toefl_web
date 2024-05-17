@@ -62,16 +62,7 @@
                      <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
                      <span class="hide-menu">AUTH</span>
                  </li>
-                 <li class="sidebar-item">
-                     <a class="sidebar-link {{ Request::is('Profile*') ? 'active' : '' }}" href="/Profile"
-                         aria-expanded="false">
-                         <span>
-                             <i class="ti ti-user"></i>
-                         </span>
-                         <span class="hide-menu">Data Admin</span>
-                     </a>
-                 </li>
-                 <li class="sidebar-item">
+                  <li class="sidebar-item">
                      <a class="sidebar-link {{ Request::is('Profile*') ? 'active' : '' }}" href="/Profile"
                          aria-expanded="false">
                          <span>

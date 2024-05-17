@@ -51,7 +51,7 @@ class AuthenticateController extends Controller
             $responseData = $response->json();
 
             if(isset($responseData['error']) && $responseData['error'] == "invalid_grant" && isset($responseData['error_description']) && $responseData['error_description'] == "Invalid login credentials") {
-                session()->flash('login_failed', 'Login Gagal, Gunakan Email dan Password yang benar !!!');
+                session()->flash('login_failed', 'Login Failed, Please use the correct email and password !!!');
                 return redirect()->route('loginForm');
             }
         }

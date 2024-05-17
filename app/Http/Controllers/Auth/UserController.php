@@ -115,7 +115,7 @@ class UserController extends Controller
         ]);
 
         if ($response->successful()){
-            session()->flash('success', 'Data Profile Berhasi di Ubah !!!');
+            session()->flash('success', 'Data Question Successfully Update !!! !!!');
             return redirect('/Profile');
         } elseif ($response->status() === 400){
             return 'Bad Request: ' . $response['message'];

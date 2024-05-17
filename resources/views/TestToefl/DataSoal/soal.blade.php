@@ -18,7 +18,7 @@
                             Question</a>
                     </div>
 
-                    <div class="d-flex justify-content-end">
+                    <div class="d-flex justify-content-start">
                         <form action="" method="GET">
                             <div class="d-flex align-items-center">
                                 <div class="me-2">
@@ -27,7 +27,8 @@
                                             <option value="">Filter Packet</option>
                                             <option value="">Select All</option>
                                             @foreach ($dataPaket['data'] as $item)
-                                                <option value="{{ $item['id'] }}" {{request()->packet_id == $item['id'] ? 'selected' : ''}}>
+                                                <option value="{{ $item['id'] }}"
+                                                    {{ request()->packet_id == $item['id'] ? 'selected' : '' }}>
                                                     {{ $item['name'] }}
                                                 </option>
                                             @endforeach
@@ -42,7 +43,8 @@
                                             <option value="">Filter Type</option>
                                             <option value="">Select All</option>
                                             @foreach ($dataTipe['dataTipe'] as $type)
-                                                <option value="{{ $type['id'] }}" {{request()->type_id == $type['id'] ? 'selected' : ''}}>
+                                                <option value="{{ $type['id'] }}"
+                                                    {{ request()->type_id == $type['id'] ? 'selected' : '' }}>
                                                     {{ $type['name'] }}
                                                 </option>
                                             @endforeach
@@ -99,6 +101,9 @@
                                     <h6 class="fw-semibold mb-0 text-center">Paket</h6>
                                 </th>
                                 <th class="border-bottom-0">
+                                    <h6 class="fw-semibold mb-0 text-center">Show</h6>
+                                </th>
+                                <th class="border-bottom-0">
                                     <h6 class="fw-semibold mb-0">Edit</h6>
                                 </th>
                                 <th class="border-bottom-0">
@@ -108,10 +113,12 @@
                             </tr>
                         </thead>
                         <tbody>
+                            <?php $number = 1; ?>
                             <?php foreach($data as $dataSoal): ?>
+
                             <tr>
                                 <td class="border-bottom-0 text-center" style="width: 12px">
-                                    <h6 class="fw-semibold mb-0"><?php echo $dataSoal['id']; ?></h6>
+                                    <h6 class="fw-semibold mb-0"><?php echo $number++; ?></h6>
                                 </td>
                                 <td class=""
                                     style="width: 100%; white-space: pre-line; word-wrap: break-word; text-align: justify; color: black">
@@ -123,13 +130,18 @@
                                 <td class="border-bottom-0">
                                     <h6 class="fw-semibold mb-1 text-center"><?php echo $dataSoal['test_packet']['name']; ?></h6>
                                 </td>
+                                <td>
+                                    <p class="text-center"><a href=""><i class="ti ti-eye"></i></a></p>
+                                </td>
                                 <td class="border-bottom-0">
                                     <p class="mb-0 fw-normal text-center"><a
                                             href="{{ route('DataSoal.edit', ['DataSoal' => $dataSoal['id']]) }}"><i
                                                 class="ti ti-pencil"></i></a></p>
                                 </td>
                                 <td class="border-bottom-0">
-                                    <form action="{{ route('DataSoal.destroy', ['DataSoal' => $dataSoal['id']]) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this data: {{ $dataSoal['question'] }}?')">
+                                    <form action="{{ route('DataSoal.destroy', ['DataSoal' => $dataSoal['id']]) }}"
+                                        method="POST"
+                                        onsubmit="return confirm('Are you sure you want to delete this data: {{ $dataSoal['question'] }}?')">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-link text-danger">
@@ -145,5 +157,4 @@
             </div>
         </div>
     </div>
-
 @endsection

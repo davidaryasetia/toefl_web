@@ -83,6 +83,12 @@
                         {
                             width: '12px'
                         },
+                        {
+                            width: '12px'
+                        },
+                        {
+                            width: '12px'
+                        },
                     ]
                 });
                 $('#table_master').DataTable({

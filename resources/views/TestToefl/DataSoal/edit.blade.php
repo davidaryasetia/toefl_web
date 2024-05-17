@@ -30,7 +30,7 @@
                     <div class="row">
                         <div class="mb-4 col-lg-12">
                             <label for="paket" class="form-label">Input Question</label>
-                            <textarea type="text" class="form-control" id="question" name="question" aria-describedby="emailHelp"
+                            <textarea type="text" class="form-control" id="question" name="question" aria-describedby="emailHelp" rows="3"
                                 placeholder="Input Question.....">{{ $DataSoal['question'] }}</textarea>
                         </div>
                     </div>
@@ -59,6 +59,74 @@
                                             {{ $type['name'] }}
                                         </option>
                                     @endforeach
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="mb-4 col-lg-6">
+                            <label for="paket" class="form-label">Answer 1</label>
+                            <input type="text" class="form-control" id="answer[]" name="answer[]" aria-describedby="emailHelp" 
+                                placeholder="Input Answer 1....." />
+                        </div>
+                        <div class="mb-4 col-lg-6">
+                            <label for="paket" class="form-label">Is Correct</label>
+                            <div class="">
+                                <select id="defaultSelect" id="correct[]" name="correct[]" class="form-select">
+                                    <option>Type Correct</option>
+                                    <option value="TRUE">TRUE</option>
+                                    <option value="FALSE">FALSE</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="mb-4 col-lg-6">
+                            <label for="paket" class="form-label">Answer 2</label>
+                            <input type="text" class="form-control" id="answer[]" name="answer[]" aria-describedby="emailHelp" 
+                                placeholder="Input Answer 2....." />
+                        </div>
+                        <div class="mb-4 col-lg-6">
+                            <label for="paket" class="form-label">Is Correct</label>
+                            <div class="">
+                                <select id="defaultSelect" id="correct[]" name="correct[]" class="form-select">
+                                    <option>Type Correct</option>
+                                    <option value="TRUE">TRUE</option>
+                                    <option value="FALSE">FALSE</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="mb-4 col-lg-6">
+                            <label for="paket" class="form-label">Answer 3</label>
+                            <input type="text" class="form-control" id="answer[]" name="answer[]" aria-describedby="emailHelp" 
+                                placeholder="Input Answer 3....." />
+                        </div>
+                        <div class="mb-4 col-lg-6">
+                            <label for="paket" class="form-label">Is Correct</label>
+                            <div class="">
+                                <select id="defaultSelect" id="correct[]" name="correct[]" class="form-select">
+                                    <option>Type Correct</option>
+                                    <option value="TRUE">TRUE</option>
+                                    <option value="FALSE">FALSE</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="mb-4 col-lg-6">
+                            <label for="paket" class="form-label">Answer 4</label>
+                            <input type="text" class="form-control" id="answer[]" name="answer[]" aria-describedby="emailHelp" rows="3"
+                                placeholder="Input Answer 4....." />
+                        </div>
+                        <div class="mb-4 col-lg-6">
+                            <label for="paket" class="form-label">Is Correct</label>
+                            <div class="">
+                                <select id="defaultSelect" id="correct[]" name="correct[]" class="form-select">
+                                    <option>Type Correct</option>
+                                    <option value="TRUE">TRUE</option>
+                                    <option value="FALSE">FALSE</option>
                                 </select>
                             </div>
                         </div>

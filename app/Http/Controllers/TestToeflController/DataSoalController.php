@@ -90,8 +90,43 @@ class DataSoalController extends Controller
         ]);
 
         if ($response->successful()) {
-            session()->flash('success', 'Data Packet Successfully Added !!!');
-            return redirect('/DataSoal');
+            $response_answer_id = Http::withHeaders([
+                'apikey' => 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZubmVwbm53emxnc2VjdG5ueXljIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTQzNjIxOTAsImV4cCI6MjAyOTkzODE5MH0.IyrWPJ5CbV4wk1Q0sUwqN9Rpdt95IRJ8WQ_-BNS6gmY', 
+                'Authorization' => 'Bearer ' . $access_token, 
+                'Content-Type' => 'application/json',
+            ])->get('https://vnnepnnwzlgsectnnyyc.supabase.co/rest/v1/test_question?select=id&order=id.desc&limit=1');
+
+            if($response_answer_id->successful()){
+                $last_id = $response_answer_id->json()[0]['id'];
+                $answers = $request->input('answer');
+                $corrects = $request->input('correct');
+
+                foreach ($answers as $index => $answer) {
+                    $isCorrect = $corrects[$index];
+                    $insert_answer = Http::withHeaders([
+                        'apikey' => 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZubmVwbm53emxnc2VjdG5ueXljIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTQzNjIxOTAsImV4cCI6MjAyOTkzODE5MH0.IyrWPJ5CbV4wk1Q0sUwqN9Rpdt95IRJ8WQ_-BNS6gmY', 
+                        'Authorization' => 'Bearer ' . $access_token, 
+                        'Content-Type' => 'application/json',
+                    ])->post('https://vnnepnnwzlgsectnnyyc.supabase.co/rest/v1/test_answer',[
+                        'question_id' => $last_id, 
+                        'answer' => $answer,
+                        'is_correct' => $isCorrect,
+                    ]);
+                }
+
+                // If Success
+                if($insert_answer->successful()){
+                    session()->flash('success', 'Data Packet Successfully Addedd !!!');
+                    return redirect('/DataSoal');
+                } elseif ($response->status() === 400) {
+                    session()->flash('error', 'Bad Request : ' . $response['message']);
+                    return back();
+                } else {
+                    session()->flash('error', 'Failed Sumbmit Data');
+                    return back();
+                }
+            }
+
         } elseif ($response->status() === 400) {
             session()->flash('error', 'Bad Request : ' . $response['message']);
             return back();
