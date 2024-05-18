@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\AuthenticateController;
+use App\Http\Controllers\Auth\DataUserController;
 use App\Http\Controllers\Auth\UserController;
 use App\Http\Controllers\TestToeflController\DataSoalController;
 use App\Http\Controllers\HistoryController;
@@ -33,4 +34,6 @@ Route::middleware([AuthenticateMiddleware::class])->group(function () {
     Route::resource('/DataSoal', DataSoalController::class);
     Route::get('/DataSoal', [DataSoalController::class, 'index'])->name('DataSoal.index');
     Route::resource('/HistoryTest', HistoryController::class)->only(['index', 'destroy']);
+    Route::resource('/DataUser', DataUserController::class);
+
 });

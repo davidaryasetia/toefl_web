@@ -1,26 +1,32 @@
 @extends('layouts.main')
 
 @section('row')
+    @php
+        $dataPaket = app('dataPaket');
+        $dataTipe = app('dataTipe');
+    @endphp
     <div class="col-lg-12 d-flex align-items-stretch">
         <div class="card w-100">
-            <div class="card-body p-4">
-                <div class="d-flex justify-content-between align-items-center">
-                    <div class="d-flex align-items-center mb-4">
+            <div class="card-body p-4 mb-4">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                    <div class="d-flex align-items-center">
                         <div>
-                            <span class="card-title fw-semibold me-3">List Question Packet</span>
+                            <span class="card-title fw-semibold me-3">Data User</span>
                         </div>
-                        <div>
-                            <a href="PaketSoal/create" type="button" class="btn btn-primary"><i class="ti ti-plus"></i>Add
-                                Packet</a>
+                        <div class="me-3">
+                            <a href="DataUser/create" type="button" class="btn btn-primary"><i class="ti ti-plus"></i> Add
+                                Admin</a>
                         </div>
                     </div>
 
-                    <div>
+
+                    <div class="col-lg-4">
                         @if (session('success'))
                             <div class="alert alert-primary" style role="alert">
                                 {{ session('success') }}
                             </div>
                         @endif
+
                         @if (session('error'))
                             <div class="alert alert-danger" style role="alert">
                                 {{ session('error') }}
@@ -37,8 +43,9 @@
                     </script>
                 </div>
 
+
                 <div class="table-responsive">
-                    <table id="table_paket" class="table table-hover table-bordered text-nowrap mb-0 align-middle">
+                    <table id="table_user" class="table table-hover table-bordered text-nowrap mb-0 align-middle">
 
                         <thead class="text-dark fs-4">
                             <tr>
@@ -46,13 +53,13 @@
                                     <h6 class="fw-semibold mb-0">No</h6>
                                 </th>
                                 <th class="border-bottom-0">
-                                    <h6 class="fw-semibold mb-0 text-center">Question Packet</h6>
+                                    <h6 class="fw-semibold mb-0 text-left">Name</h6>
                                 </th>
                                 <th class="border-bottom-0">
-                                    <h6 class="fw-semibold mb-0 text-center">Show Question</h6>
+                                    <h6 class="fw-semibold mb-0 text-center">Email</h6>
                                 </th>
                                 <th class="border-bottom-0">
-                                    <h6 class="fw-semibold mb-0 text-center">Download Packet</h6>
+                                    <h6 class="fw-semibold mb-0 text-center">Admin</h6>
                                 </th>
                                 <th class="border-bottom-0">
                                     <h6 class="fw-semibold mb-0">Edit</h6>
@@ -64,28 +71,37 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <?php $no = 1; ?>
-                            <?php foreach($data as $paket): ?>
+                            <?php $no=1; ?>
+                            <?php foreach($dataUser as $datauser): ?>
                             <tr>
-                                <td class="border-bottom-0 text-center">
-                                    <h6 class="fw-semibold mb-0"><?php echo $no++; ?></h6>
+                                <td class="border-bottom-0 text-center" style="width: 12px">
+                                    <h6 class="fw-semibold mb-0">{{$no++}}</h6>
+                                </td>
+                                <td class="border-bottom-0"
+                                    style="width: 100%; white-space: pre-line; word-wrap: break-word; text-align: justify; color: black">
+                                    <span class="d-flex align-items-center" style="text-align: center;"> {{$datauser['name']}} </span>
+                                </td>
+
+                                <td class="border-bottom-0">
+                                    <p class="mb-0 fw-normal text-center">{{$datauser['email']}}
+                                    </p>
                                 </td>
                                 <td class="border-bottom-0">
-                                    <div class="p-3">
-                                        <h6 class="fw-semibold mb-1 text-center"><?php echo $paket['name']; ?></h6>
-                                    </div>
-                                </td>
-                                <td class="text-center"><a href=""><i class="ti ti-eye"></i></a></td>
-                                <td class="text-center"><a href=""><i class="ti ti-download"></i></a></td>
-                                <td class="border-bottom-0">
-                                    <p class="mb-0 fw-normal text-center"><a
-                                            href="{{ route('PaketSoal.edit', ['PaketSoal' => $paket['id']]) }}"><i
-                                                class="ti ti-pencil"></i></a></p>
+                                    <p class="mb-0 fw-normal text-center">
+                                        @if ($datauser['is_admin'])
+                                        <span>Admin</span>
+                                        @else
+                                        <span>User</span>
+                                        @endif
+                                    </p>
                                 </td>
                                 <td class="border-bottom-0">
-                                    <form action="{{ route('PaketSoal.destroy', ['PaketSoal' => $paket['id']]) }}"
-                                        method="POST"
-                                        onsubmit="return confirm('Are you sure you want to delete this data <?php echo $paket['name']; ?> ?')">
+                                    <p class="mb-0 fw-normal text-center"><a href=""><i class="ti ti-pencil"></i></a>
+                                    </p>
+                                </td>
+                                <td class="border-bottom-0">
+                                    <form action="" method="POST"
+                                        onsubmit="return confirm('Are you sure you want to delete this data: ">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-link text-danger">
@@ -94,7 +110,7 @@
                                     </form>
                                 </td>
                             </tr>
-                            <?php endforeach; ?>
+                            <?php endforeach ?>
                         </tbody>
                     </table>
                 </div>

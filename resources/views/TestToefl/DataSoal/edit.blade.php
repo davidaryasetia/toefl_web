@@ -63,11 +63,15 @@
                             </div>
                         </div>
                     </div>
+
+
+                    <?php foreach($DataSoal as $DataAnswer): ?>
+
                     <div class="row">
                         <div class="mb-4 col-lg-6">
                             <label for="paket" class="form-label">Answer 1</label>
                             <input type="text" class="form-control" id="answer[]" name="answer[]" aria-describedby="emailHelp" 
-                                placeholder="Input Answer 1....." />
+                                placeholder="Input Answer 1....." value=""/>
                         </div>
                         <div class="mb-4 col-lg-6">
                             <label for="paket" class="form-label">Is Correct</label>
@@ -80,57 +84,8 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="mb-4 col-lg-6">
-                            <label for="paket" class="form-label">Answer 2</label>
-                            <input type="text" class="form-control" id="answer[]" name="answer[]" aria-describedby="emailHelp" 
-                                placeholder="Input Answer 2....." />
-                        </div>
-                        <div class="mb-4 col-lg-6">
-                            <label for="paket" class="form-label">Is Correct</label>
-                            <div class="">
-                                <select id="defaultSelect" id="correct[]" name="correct[]" class="form-select">
-                                    <option>Type Correct</option>
-                                    <option value="TRUE">TRUE</option>
-                                    <option value="FALSE">FALSE</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="mb-4 col-lg-6">
-                            <label for="paket" class="form-label">Answer 3</label>
-                            <input type="text" class="form-control" id="answer[]" name="answer[]" aria-describedby="emailHelp" 
-                                placeholder="Input Answer 3....." />
-                        </div>
-                        <div class="mb-4 col-lg-6">
-                            <label for="paket" class="form-label">Is Correct</label>
-                            <div class="">
-                                <select id="defaultSelect" id="correct[]" name="correct[]" class="form-select">
-                                    <option>Type Correct</option>
-                                    <option value="TRUE">TRUE</option>
-                                    <option value="FALSE">FALSE</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="mb-4 col-lg-6">
-                            <label for="paket" class="form-label">Answer 4</label>
-                            <input type="text" class="form-control" id="answer[]" name="answer[]" aria-describedby="emailHelp" rows="3"
-                                placeholder="Input Answer 4....." />
-                        </div>
-                        <div class="mb-4 col-lg-6">
-                            <label for="paket" class="form-label">Is Correct</label>
-                            <div class="">
-                                <select id="defaultSelect" id="correct[]" name="correct[]" class="form-select">
-                                    <option>Type Correct</option>
-                                    <option value="TRUE">TRUE</option>
-                                    <option value="FALSE">FALSE</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
+                    <?php endforeach; ?>
+                    
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
             </div>

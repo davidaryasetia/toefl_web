@@ -9,54 +9,55 @@
         <div class="card w-100">
             <div class="card-body p-4 mb-4">
                 <div class="d-flex justify-content-between align-items-center mb-2">
+                    <div class="d-flex align-items-center">
+                        <div>
+                            <span class="card-title fw-semibold me-3">Data Question</span>
+                        </div>
+                        <div class="me-3">
+                            <a href="DataSoal/create" type="button" class="btn btn-primary"><i class="ti ti-plus"></i> Add
+                                Question</a>
+                        </div>
 
-                    <div>
-                        <span class="card-title fw-semibold me-3">Data Master Question</span>
-                    </div>
-                    <div class="me-3">
-                        <a href="DataSoal/create" type="button" class="btn btn-primary"><i class="ti ti-plus"></i> Add
-                            Question</a>
-                    </div>
+                        <div class="d-flex justify-content-start">
+                            <form action="" method="GET">
+                                <div class="d-flex align-items-center">
+                                    <div class="me-2">
+                                        <div class="">
+                                            <select id="" name="packet_id" class="form-select">
+                                                <option value="">Filter Packet</option>
+                                                <option value="">Select All</option>
+                                                @foreach ($dataPaket['data'] as $item)
+                                                    <option value="{{ $item['id'] }}"
+                                                        {{ request()->packet_id == $item['id'] ? 'selected' : '' }}>
+                                                        {{ $item['name'] }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
 
-                    <div class="d-flex justify-content-start">
-                        <form action="" method="GET">
-                            <div class="d-flex align-items-center">
-                                <div class="me-2">
-                                    <div class="">
-                                        <select id="" name="packet_id" class="form-select">
-                                            <option value="">Filter Packet</option>
-                                            <option value="">Select All</option>
-                                            @foreach ($dataPaket['data'] as $item)
-                                                <option value="{{ $item['id'] }}"
-                                                    {{ request()->packet_id == $item['id'] ? 'selected' : '' }}>
-                                                    {{ $item['name'] }}
-                                                </option>
-                                            @endforeach
-                                        </select>
+                                    <div class="me-2">
+                                        {{-- <label for="paket" class="form-label">Type Question</label> --}}
+                                        <div class="">
+                                            <select id="defaultSelect" id="type_id" name="type_id" class="form-select">
+                                                <option value="">Filter Type</option>
+                                                <option value="">Select All</option>
+                                                @foreach ($dataTipe['dataTipe'] as $type)
+                                                    <option value="{{ $type['id'] }}"
+                                                        {{ request()->type_id == $type['id'] ? 'selected' : '' }}>
+                                                        {{ $type['name'] }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div>
+                                        <button type="submit" class="btn btn-outline-info">Filter</button>
                                     </div>
                                 </div>
-
-                                <div class="me-2">
-                                    {{-- <label for="paket" class="form-label">Type Question</label> --}}
-                                    <div class="">
-                                        <select id="defaultSelect" id="type_id" name="type_id" class="form-select">
-                                            <option value="">Filter Type</option>
-                                            <option value="">Select All</option>
-                                            @foreach ($dataTipe['dataTipe'] as $type)
-                                                <option value="{{ $type['id'] }}"
-                                                    {{ request()->type_id == $type['id'] ? 'selected' : '' }}>
-                                                    {{ $type['name'] }}
-                                                </option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                </div>
-
-                                <div>
-                                    <button type="submit" class="btn btn-outline-info">Filter</button>
-                                </div>
-                            </div>
-                        </form>
+                            </form>
+                        </div>
                     </div>
 
 
@@ -82,6 +83,7 @@
                         }, 5000);
                     </script>
                 </div>
+
 
                 <div class="table-responsive">
                     <table id="table_master" class="table table-hover table-bordered text-nowrap mb-0 align-middle">
@@ -122,7 +124,8 @@
                                 </td>
                                 <td class=""
                                     style="width: 100%; white-space: pre-line; word-wrap: break-word; text-align: justify; color: black">
-                                    <span style="text-align: justify"><?php echo $dataSoal['question']; ?></span>
+                                    <span class="d-flex align-items-center"
+                                        style="text-align: justify"><?php echo $dataSoal['question']; ?></span>
                                 </td>
                                 <td class="border-bottom-0" style="width: 12px">
                                     <h6 class="fw-semibold mb-1 text-center"><?php echo $dataSoal['type']['name']; ?></h6>
@@ -130,8 +133,9 @@
                                 <td class="border-bottom-0">
                                     <h6 class="fw-semibold mb-1 text-center"><?php echo $dataSoal['test_packet']['name']; ?></h6>
                                 </td>
-                                <td>
-                                    <p class="text-center"><a href=""><i class="ti ti-eye"></i></a></p>
+                                <td class="border-bottom-0">
+                                    <p class="mb-0 fw-normal text-center"><a href=""><i class="ti ti-eye"></i></a>
+                                    </p>
                                 </td>
                                 <td class="border-bottom-0">
                                     <p class="mb-0 fw-normal text-center"><a
@@ -144,7 +148,7 @@
                                         onsubmit="return confirm('Are you sure you want to delete this data: {{ $dataSoal['question'] }}?')">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="btn btn-link text-danger">
+                                        <button type="submit" class="btn btn-link text-danger" >
                                             <i class="ti ti-trash"></i>
                                         </button>
                                     </form>

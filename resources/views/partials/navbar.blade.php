@@ -19,15 +19,15 @@
                 <li class="nav-item dropdown d-flex align-items-center">
                     <a class="nav-link nav-icon-hover" href="javascript:void(0)" id="drop2"
                         data-bs-toggle="dropdown" aria-expanded="false">
-                        <img src="{{ asset('assets/images/profile/user-1.jpg')}}" alt="" width="35" height="35"
-                            class="rounded-circle">
+                        <img src="{{ asset('assets/images/profile/user-1.jpg') }}" alt="" width="35"
+                            height="35" class="rounded-circle">
                     </a>
                     <div class="flex-grow-1 me-3">
                         <span class="fw-semibold d-block" id="navbar-username"></span>
                         <script>
                             const access_token = '{{ session('access_token') }}';
-                            const idUser = '{{session('idUser')}}'
-                            fetch('https://vnnepnnwzlgsectnnyyc.supabase.co/rest/v1/users?id=eq.'+idUser, {
+                            const idUser = '{{ session('idUser') }}'
+                            fetch('https://vnnepnnwzlgsectnnyyc.supabase.co/rest/v1/users?id=eq.' + idUser, {
                                     method: 'GET',
                                     headers: {
                                         'apikey': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZubmVwbm53emxnc2VjdG5ueXljIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTQzNjIxOTAsImV4cCI6MjAyOTkzODE5MH0.IyrWPJ5CbV4wk1Q0sUwqN9Rpdt95IRJ8WQ_-BNS6gmY',
@@ -42,9 +42,9 @@
                                     const navbarUsername = document.getElementById('navbar-username');
                                     const navbarStatus = document.getElementById('navbar-status');
                                     navbarUsername.textContent = username;
-                                    
+
                                     // status admin 
-                                    if(admin){
+                                    if (admin) {
                                         navbarStatus.textContent = 'Admin';
                                     } else {
                                         navbarStatus.textContent = 'User';
@@ -66,8 +66,17 @@
                                 <i class="ti ti-user fs-6"></i>
                                 <p class="mb-0 fs-3">My Profile</p>
                             </a>
-                            <a href="./authentication-login.html"
-                                class="btn btn-outline-primary mx-3 mt-2 d-block">Logout</a>
+                            <a class="btn btn-outline-primary mx-3 mt-2 d-block" href="#" aria-expanded="false"
+                                onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                <span>
+                                    <i class="ti ti-logout "></i>
+                                </span>
+                                <span class="hide-menu">Logout</span>
+                            </a>
+
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                @csrf
+                            </form>
                         </div>
                     </div>
                 </li>

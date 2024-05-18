@@ -58,6 +58,12 @@
                                     {{ session('login_failed') }}
                                 </div>
                             @endif
+
+                            @if (session('error'))
+                                <div class="alert alert-danger" style role="alert">
+                                    {{ session('login_failed') }}
+                                </div>
+                            @endif
                         </div>
                         {{-- End Failed Login Message --}}
                     </div>

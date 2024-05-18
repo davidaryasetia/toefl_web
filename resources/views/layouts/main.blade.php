@@ -8,6 +8,7 @@
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
     <title>TOEFL-PENS</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css" />
     <link rel="shortcut icon" type="image/png" href="{{ asset('assets/images/logos/short-logo.png') }}" />
     <link rel="stylesheet" href="{{ asset('assets/css/styles.min.css') }}" />
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -95,6 +96,29 @@
                     // responsive: true,
                     autoWidth: false,
                 });
+                $('#table_user').DataTable({
+                    responsive: true,
+                    columns: [{
+                            width: '6rem'
+                        },
+                        null,
+                        {
+                            width: '128px'
+                        },
+                       
+                        {
+                            width: '12px'
+                        },
+                        {
+                            width: '12px'
+                        },
+                        {
+                            width: '12px'
+                        },
+                    ]
+                });
+
+                
             });
         </script>
 </body>

@@ -59,7 +59,7 @@ class AuthenticateController extends Controller
 
     public function destroy()
     {
-        Session::forget('access_token');
+        session()->forget('access_token');
         Session::flush();
         Session::regenerate(true);
         return redirect()->route('loginForm')->withHeaders([

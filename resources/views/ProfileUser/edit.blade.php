@@ -19,21 +19,15 @@
 
                 <section class="section profile">
                     <div class="row">
-                        <div class="col-xl-4">
-
-                            <div class="card">
-                                <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
-                                    <div></div>
-                                    <img src="{{ asset('assets/images/profile/user-1.jpg') }}" alt="Profile" width="86"
-                                        class="rounded-circle mb-3">
-                                </div>
+                        <div class="col-xl-4 card shadow-none border d-flex flex-column justify-content-center">
+                            <div class="d-flex flex-column align-items-center">
+                                <img src="{{ asset('assets/images/profile/user-1.jpg') }}" alt="Profile" width="86"
+                                    class="rounded-circle mb-3">
                             </div>
-
                         </div>
                         <div class="col-xl-8">
-
-                            <div class="card">
-                                <div class="card-body pt-3">
+                            <div class="card shadow-none border">
+                                <div class="card-body  pt-3">
                                     <!-- Bordered Tabs -->
                                     <ul class="nav nav-tabs nav-tabs-bordered">
                                         <li class="nav-item">
