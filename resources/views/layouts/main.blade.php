@@ -92,6 +92,26 @@
                         },
                     ]
                 });
+                $('#table_show_questions').DataTable({
+                    responsive: true,
+                    columns: [{
+                            width: '6rem'
+                        },
+                        null,
+                        {
+                            width: '12px'
+                        },
+                        {
+                            width: '12px'
+                        },
+                        {
+                            width: '12px'
+                        },
+                        {
+                            width: '12px'
+                        },
+                    ]
+                });
                 $('#table_master').DataTable({
                     // responsive: true,
                     autoWidth: false,

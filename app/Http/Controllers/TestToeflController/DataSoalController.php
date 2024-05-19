@@ -51,7 +51,8 @@ class DataSoalController extends Controller
                 'type_id' => $type_id
             ]);
         } elseif ($response->status() === 400) {
-            return 'Bad Request: ' . $response['message'];
+            session()->flash('error', 'Bad Request : ' . $response['message']);
+            return redirect('/DataSoal');
         } elseif ($response->status() === 401 && $response->json()['message'] === 'JWT expired') {
             session()->forget('access_token');
             session()->flash('error', 'Your Session Has Been End, Please Login Again !!!');
@@ -201,13 +202,13 @@ class DataSoalController extends Controller
             session()->flash('success', 'Data Question Successfully Update !!!');
             return redirect('/DataSoal');
         } elseif ($response->status() === 400) {
-            return 'Bad Request: ' . $response['message'];
+           session()->flash('error', 'Bad Request : ' . $response['message']);
+            return redirect('/DataSoal'); 
         } elseif ($response->status() === 401 && $response->json()['message'] === 'JWT expired') {
             session()->forget('access_token');
             session()->flash('error', 'Your Session Has Been End, Please Login Again !!!');
             return redirect('/');
-        }
-        else {
+        } else {
             return 'Error Response Here';
         }
     }
@@ -232,8 +233,9 @@ class DataSoalController extends Controller
             session()->flash('success', 'Data Question Successfully Delete !!!');
             return redirect('/DataSoal');
         } elseif ($response->status() === 400) {
-            return 'Bad Request: ' . $response['message'];
-        } elseif($response->status() === 401 && $response->json()['message'] === 'JWT expired') {
+            session()->flash('error', 'Bad Request : ' . $response['message']);
+            return redirect('/DataSoal'); 
+        } elseif ($response->status() === 401 && $response->json()['message'] === 'JWT expired') {
             session()->forget('access_token');
             session()->flash('error', 'Your Session Has Been End, Please Login Again !!!');
             return redirect('/');

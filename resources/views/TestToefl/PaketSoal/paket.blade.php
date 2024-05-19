@@ -75,7 +75,7 @@
                                         <h6 class="fw-semibold mb-1 text-center"><?php echo $paket['name']; ?></h6>
                                     </div>
                                 </td>
-                                <td class="text-center"><a href=""><i class="ti ti-eye"></i></a></td>
+                                <td class="text-center"><a href="{{ route('PaketSoal.show', ['PaketSoal' => $paket['id']]) }}"><i class="ti ti-eye"></i></a></td>
                                 <td class="text-center"><a href=""><i class="ti ti-download"></i></a></td>
                                 <td class="border-bottom-0">
                                     <p class="mb-0 fw-normal text-center"><a

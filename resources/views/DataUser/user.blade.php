@@ -96,12 +96,13 @@
                                     </p>
                                 </td>
                                 <td class="border-bottom-0">
-                                    <p class="mb-0 fw-normal text-center"><a href=""><i class="ti ti-pencil"></i></a>
+                                    <p class="mb-0 fw-normal text-center"><a href="{{route('DataUser.edit', ['DataUser' => $datauser['id']])}}"><i class="ti ti-pencil"></i></a>
                                     </p>
                                 </td>
                                 <td class="border-bottom-0">
-                                    <form action="" method="POST"
-                                        onsubmit="return confirm('Are you sure you want to delete this data: ">
+                                    <form action="{{ route('DataUser.destroy', ['DataUser' => $datauser['id']]) }}"
+                                        method="POST"
+                                        onsubmit="return confirm('Are you sure you want to delete this data <?php echo $datauser['name']; ?> ?')">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-link text-danger">

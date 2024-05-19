@@ -36,10 +36,14 @@ class HistoryController extends Controller
                 'data' => $data,
             ]);
         } elseif ($response->status() === 400) {
-            return 'Bad Request: ' . $response['message'];
+            session()->flash('error', 'Bad Request : ' . $response['message']);
+            return redirect('/HistoryTest');
+        } elseif ($response->status() === 401 && $response->json()['message'] === 'JWT expired') {
+            session()->forget('access_token');
+            session()->flash('error', 'Your Session Has Been End, Please Login Again !!!');
+            return redirect('/');
         } else {
-            dd($response);
-            return 'Failed Fetch Data';
+            return 'Error Response Here';
         }
     }
 
@@ -110,9 +114,14 @@ class HistoryController extends Controller
             session()->flash('success', 'Data History Test Berhasil di Hapus !!!');
             return to_route('HistoryTest.index');
         } elseif ($response->status() === 400) {
-            return 'Bad Request: '. $response['message'];
+            session()->flash('error', 'Bad Request : ' . $response['message']);
+            return redirect('/HistoryTest');
+        } elseif ($response->status() === 401 && $response->json()['message'] === 'JWT expired') {
+            session()->forget('access_token');
+            session()->flash('error', 'Your Session Has Been End, Please Login Again !!!');
+            return redirect('/');
         } else {
-            return 'Failed Fetch Data';
+            return 'Error Response Here';
         }
     }
 }

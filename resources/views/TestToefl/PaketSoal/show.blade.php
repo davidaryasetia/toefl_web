@@ -11,7 +11,12 @@
                 <div class="d-flex justify-content-between align-items-center mb-2">
                     <div class="d-flex align-items-center">
                         <div>
-                            <span class="card-title fw-semibold me-3">Data Question</span>
+                            <a href="/PaketSoal" class="d-flex align-items-center"><i class="ti ti-arrow-left me-3"
+                                    style="font-size: 20px; color: black"></i>
+                            </a>
+                        </div>
+                        <div class="me-2">
+                            <span class="card-title fw-semibold me-3">List Question Packet : </span>
                         </div>
                         <div class="me-3">
                             <a href="DataSoal/create" type="button" class="btn btn-primary"><i class="ti ti-plus"></i> Add
@@ -21,21 +26,6 @@
                         <div class="d-flex justify-content-start">
                             <form action="" method="GET">
                                 <div class="d-flex align-items-center">
-                                    <div class="me-2">
-                                        <div class="">
-                                            <select id="" name="packet_id" class="form-select">
-                                                <option value="">Filter Packet</option>
-                                                <option value="">Select All</option>
-                                                @foreach ($dataPaket['data'] as $item)
-                                                    <option value="{{ $item['id'] }}"
-                                                        {{ request()->packet_id == $item['id'] ? 'selected' : '' }}>
-                                                        {{ $item['name'] }}
-                                                    </option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                    </div>
-
                                     <div class="me-2">
                                         {{-- <label for="paket" class="form-label">Type Question</label> --}}
                                         <div class="">
@@ -86,7 +76,7 @@
 
 
                 <div class="table-responsive">
-                    <table id="table_master" class="table table-hover table-bordered text-nowrap mb-0 align-middle">
+                    <table id="table_show_question" class="table table-hover table-bordered text-nowrap mb-0 align-middle">
 
                         <thead class="text-dark fs-4">
                             <tr>
@@ -100,11 +90,9 @@
                                     <h6 class="fw-semibold mb-0 text-center">Type Question</h6>
                                 </th>
                                 <th class="border-bottom-0">
-                                    <h6 class="fw-semibold mb-0 text-center">Paket</h6>
-                                </th>
-                                <th class="border-bottom-0">
                                     <h6 class="fw-semibold mb-0 text-center">Show</h6>
                                 </th>
+
                                 <th class="border-bottom-0">
                                     <h6 class="fw-semibold mb-0">Edit</h6>
                                 </th>
@@ -116,45 +104,41 @@
                         </thead>
                         <tbody>
                             <?php $number = 1; ?>
-                            <?php foreach($data as $dataSoal): ?>
-
+                            <?php foreach($data as $question): ?>
                             <tr>
                                 <td class="border-bottom-0 text-center" style="width: 12px">
-                                    <h6 class="fw-semibold mb-0"><?php echo $number++; ?></h6>
+                                    <h6 class="fw-semibold mb-0"> {{$number++}} </h6>
                                 </td>
                                 <td class=""
                                     style="width: 100%; white-space: pre-line; word-wrap: break-word; text-align: justify; color: black">
                                     <span class="d-flex align-items-center"
-                                        style="text-align: justify"> {{$dataSoal['question']}} </span>
+                                        style="text-align: justify"> {{$question['question']}} </span>
                                 </td>
                                 <td class="border-bottom-0" style="width: 12px">
-                                    <h6 class="fw-semibold mb-1 text-center"> {{$dataSoal['type']['name']}} </h6>
+                                    <h6 class="fw-semibold mb-1 text-center">{{$question['type']['name']}} </h6>
                                 </td>
-                                <td class="border-bottom-0">
-                                    <h6 class="fw-semibold mb-1 text-center"> {{$dataSoal['test_packet']['name']}} </h6>
+                                <td class="border-bottom-0" style="width: 12px">
+                                    <h6 class="fw-semibold mb-1 text-center"></h6>
                                 </td>
-                                <td class="border-bottom-0">
-                                    <p class="mb-0 fw-normal text-center"><a href=""><i class="ti ti-eye"></i></a>
-                                    </p>
-                                </td>
+
                                 <td class="border-bottom-0">
                                     <p class="mb-0 fw-normal text-center"><a
-                                            href="{{ route('DataSoal.edit', ['DataSoal' => $dataSoal['id']]) }}"><i
+                                            href=""><i
                                                 class="ti ti-pencil"></i></a></p>
                                 </td>
                                 <td class="border-bottom-0">
-                                    <form action="{{ route('DataSoal.destroy', ['DataSoal' => $dataSoal['id']]) }}"
+                                    <form action=""
                                         method="POST"
-                                        onsubmit="return confirm('Are you sure you want to delete this data: <?php echo $dataSoal['question']; ?> ?')">
+                                        onsubmit="return confirm('Are you sure you want to delete this data: ">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="btn btn-link text-danger" >
+                                        <button type="submit" class="btn btn-link text-danger">
                                             <i class="ti ti-trash"></i>
                                         </button>
                                     </form>
                                 </td>
                             </tr>
-                            <?php endforeach; ?>
+                            <?php endforeach ?>
                         </tbody>
                     </table>
                 </div>

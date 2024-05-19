@@ -61,7 +61,7 @@
 
                             @if (session('error'))
                                 <div class="alert alert-danger" style role="alert">
-                                    {{ session('login_failed') }}
+                                    {{ session('error') }}
                                 </div>
                             @endif
                         </div>
