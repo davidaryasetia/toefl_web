@@ -50,6 +50,7 @@ class DataSoalController extends Controller
                 'packet_id' => $packet_id,
                 'type_id' => $type_id
             ]);
+            
         } elseif ($response->status() === 400) {
             session()->flash('error', 'Bad Request : ' . $response['message']);
             return redirect('/DataSoal');

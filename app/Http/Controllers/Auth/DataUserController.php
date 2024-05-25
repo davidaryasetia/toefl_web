@@ -21,11 +21,22 @@ class DataUserController extends Controller
             return 'Access Token Not Found';
         }
 
+        $is_admin = request()->input('is_admin');
+
+
+        $query = [
+            'select' => 'id, name, email, is_admin'
+        ];
+
+        if($is_admin) {
+            $query['is_admin'] = 'eq.' . $is_admin;
+        }
+
         $response = Http::withHeaders([
             'apikey' => 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZubmVwbm53emxnc2VjdG5ueXljIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTQzNjIxOTAsImV4cCI6MjAyOTkzODE5MH0.IyrWPJ5CbV4wk1Q0sUwqN9Rpdt95IRJ8WQ_-BNS6gmY',
             'Authorization' => 'Bearer ' . $access_token,
             'Content-Type' => 'application/json',
-        ])->get('https://vnnepnnwzlgsectnnyyc.supabase.co/rest/v1/users');
+        ])->get('https://vnnepnnwzlgsectnnyyc.supabase.co/rest/v1/users?', $query);
 
         if ($response->successful()) {
             $data = $response->json();

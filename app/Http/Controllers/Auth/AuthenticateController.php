@@ -46,7 +46,7 @@ class AuthenticateController extends Controller
 
             Session::put('access_token', $token);
             Session::put('idUser', $idUser);
-            return redirect()->route('dashboard');
+            return redirect('/dashboard');
         } elseif ($response->status() == 400) {
             $responseData = $response->json();
 

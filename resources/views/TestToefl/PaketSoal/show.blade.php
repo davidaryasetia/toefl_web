@@ -16,7 +16,7 @@
                             </a>
                         </div>
                         <div class="me-2">
-                            <span class="card-title fw-semibold me-3">List Question Packet : </span>
+                            <span class="card-title fw-semibold me-3">List Question : {{$data[0]['test_packet']['name']}}</span>
                         </div>
                         <div class="me-3">
                             <a href="DataSoal/create" type="button" class="btn btn-primary"><i class="ti ti-plus"></i> Add

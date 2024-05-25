@@ -17,6 +17,26 @@
                             <a href="DataUser/create" type="button" class="btn btn-primary"><i class="ti ti-plus"></i> Add
                                 Admin</a>
                         </div>
+
+                        <div class="d-flex justify-content-start">
+                            <form action="" method="GET">
+                                <div class="d-flex align-items-center">
+                                    <div class="me-2">
+                                        <div class="">
+                                            <select id="" name="is_admin" class="form-select">
+                                                <option value="">Role User</option>
+                                                <option value="true" <?php if (isset($_GET['is_admin']) && $_GET['is_admin'] === 'true') echo 'selected'; ?>>Admin</option>
+                                                <option value="false" <?php if (isset($_GET['is_admin']) && $_GET['is_admin'] === 'false') echo 'selected'; ?>>User</option>
+                                               
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <button type="submit" class="btn btn-outline-info">Filter</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
                     </div>
 
 
