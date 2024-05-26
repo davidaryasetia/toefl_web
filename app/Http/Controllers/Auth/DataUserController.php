@@ -168,8 +168,8 @@ class DataUserController extends Controller
             'Content-Type' => 'application/json',
             'Prefer' => 'return=minimal',
         ])->patch('https://vnnepnnwzlgsectnnyyc.supabase.co/rest/v1/users?id=eq.' . $id, [
-            'name' => $request->input('name'),
-            'email' => $request->input('email'),
+            'name' => $name,
+            'email' => $email,
             'is_admin' => true,
         ]);
 

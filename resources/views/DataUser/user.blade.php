@@ -25,6 +25,7 @@
                                         <div class="">
                                             <select id="" name="is_admin" class="form-select">
                                                 <option value="">Role User</option>
+                                                <option value="" <?php if (isset($_GET['is_admin']) && $_GET['is_admin'] === '') echo 'selected'; ?>>All Role</option>
                                                 <option value="true" <?php if (isset($_GET['is_admin']) && $_GET['is_admin'] === 'true') echo 'selected'; ?>>Admin</option>
                                                 <option value="false" <?php if (isset($_GET['is_admin']) && $_GET['is_admin'] === 'false') echo 'selected'; ?>>User</option>
                                                
