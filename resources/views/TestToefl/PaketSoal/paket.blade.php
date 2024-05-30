@@ -10,7 +10,7 @@
                             <span class="card-title fw-semibold me-3">List Question Packet</span>
                         </div>
                         <div>
-                            <a href="PaketSoal/create" type="button" class="btn btn-primary"><i class="ti ti-plus"></i>Add
+                            <a href="PaketSoal/create" type="button" class="btn btn-primary"><i class="ti ti-plus me-1"></i>Add
                                 Packet</a>
                         </div>
                     </div>

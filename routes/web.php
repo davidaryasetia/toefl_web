@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\DataUserController;
 use App\Http\Controllers\Auth\UserController;
 use App\Http\Controllers\TestToeflController\DataSoalController;
 use App\Http\Controllers\HistoryController;
+use App\Http\Controllers\LearnToeflController\LearnQuestionController;
 use App\Http\Controllers\LearnToeflController\MaterialController;
 use App\Http\Controllers\TestToeflController\DashboardController;
 use App\Http\Controllers\TestToeflController\PaketController;
@@ -41,6 +42,7 @@ Route::middleware([AuthenticateMiddleware::class])->group(function () {
     Route::resource('/DataUser', DataUserController::class);
 
     // Route Learn Toefl
+    // Route::resource('/StudyMaterials', MaterialController::class);
     Route::resource('/StudyMaterials', MaterialController::class);
-
+    Route::resource('/LearnQuestion', LearnQuestionController::class);
 });

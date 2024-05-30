@@ -131,58 +131,7 @@ class PaketController extends Controller
         }
     }
 
-    // This is my show detail question 
-    public function show_question(string $id)
-    {
-        $access_token = session('access_token');
-        if (!$access_token) {
-            return 'Access Token Not Found';
-        }
-
-        $response = Http::withHeaders(([
-            'apikey' => 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZubmVwbm53emxnc2VjdG5ueXljIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTQzNjIxOTAsImV4cCI6MjAyOTkzODE5MH0.IyrWPJ5CbV4wk1Q0sUwqN9Rpdt95IRJ8WQ_-BNS6gmY',
-            'Authorization' => 'Bearer ' . $access_token,
-            'Content-Type' => 'application/json',
-        ]))->get('https://vnnepnnwzlgsectnnyyc.supabase.co/rest/v1/test_question?',[
-            'id' => 'eq.' . $id,
-            'select' => 'id,question,packet_id,type(id,name),test_packet(id,name)',
-
-        ]);
-
-        if ($response->successful()) {
-            $data = $response->json();
-
-
-            // Ambil ID Anser 
-            $response_answer = Http::withHeaders(([
-                'apikey' => 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZubmVwbm53emxnc2VjdG5ueXljIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTQzNjIxOTAsImV4cCI6MjAyOTkzODE5MH0.IyrWPJ5CbV4wk1Q0sUwqN9Rpdt95IRJ8WQ_-BNS6gmY',
-                'Authorization' => 'Bearer ' . $access_token,
-                'Content-Type' => 'application/json',
-            ]))->get('https://vnnepnnwzlgsectnnyyc.supabase.co/rest/v1/test_answer?', [
-                'question_id' => 'eq.' . $id,
-            ]);
-
-            if ($response_answer->successful()) {
-                $data_answer = $response_answer->json();
-
-                return view('TestToefl.DataSoal.show', [
-                    'title' => 'Edit Soal',
-                    'DataSoal' => $data,
-                    'DataAnswer' => $data_answer,
-                ]);
-            }
-        } elseif ($response->status() === 400) {
-            session()->flash('error', 'Bad Request : ' . $response['message']);
-            return redirect('/DataSoal');
-        } elseif ($response->status() === 401 && $response->json()['message'] === 'JWT expired') {
-            session()->forget('access_token');
-            session()->flash('error', 'Your Session Has Been End, Please Login Again !!!');
-            return redirect('/');
-        } else {
-            return 'Error Response Here';
-        }
-
-    }
+  
 
     /**
      * Show the form for editing the specified resource.

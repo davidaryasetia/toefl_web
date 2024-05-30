@@ -75,7 +75,7 @@
                      <a class="sidebar-link {{ Request::is('LearnQuestion*') ? 'active' : '' }}" href="/LearnQuestion"
                          aria-expanded="false">
                          <span>
-                             <i class="ti ti-file-vocabulary"></i>
+                             <i class="ti ti-vocabulary"></i>
                          </span>
                          <span class="hide-menu">Learn Question</span>
                      </a>

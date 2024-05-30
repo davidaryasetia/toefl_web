@@ -10,7 +10,7 @@
                             <span class="card-title fw-semibold me-3">Topic Study Matery</span>
                         </div>
                         <div>
-                            <a href="PaketSoal/create" type="button" class="btn btn-primary"><i class="ti ti-plus me-1"></i>Add
+                            <a href="StudyMaterials/create" type="button" class="btn btn-primary"><i class="ti ti-plus me-1"></i>Add
                                 Matery</a>
                         </div>
                     </div>
@@ -82,21 +82,21 @@
                                 </td>
                                 <td class="border-bottom-0">
                                     <p class="mb-0 fw-normal text-center"><a
-                                            href=""><i
+                                            href="{{ route('StudyMaterials.show', ['StudyMaterial' => $DataMaterial['id']]) }}"><i
                                                 class="ti ti-eye"></i></a></p>
                                 </td>
                                 <td class="border-bottom-0">
                                     <p class="mb-0 fw-normal text-center"><a
-                                            href=""><i
+                                            href="{{ route('StudyMaterials.edit', ['StudyMaterial' => $DataMaterial['id']]) }}"><i
                                                 class="ti ti-pencil"></i></a></p>
                                 </td>
-                                <td class="border-bottom-0 text-center">
-                                    <form action=""
+                                <td class="border-bottom-0">
+                                    <form action="{{ route('StudyMaterials.destroy', ['StudyMaterial' => $DataMaterial['id']]) }}"
                                         method="POST"
-                                        onsubmit="return confirm('Are you sure you want to delete this data ">
+                                        onsubmit="return confirm('Are you sure you want to delete this Topic Matery <?php echo $DataMaterial['title']; ?> ?')">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="btn btn-link text-danger text-center">
+                                        <button type="submit" class="btn btn-link text-danger">
                                             <i class="ti ti-trash"></i>
                                         </button>
                                     </form>

@@ -14,7 +14,7 @@
                             <span class="card-title fw-semibold me-3">Data Question</span>
                         </div>
                         <div class="me-3">
-                            <a href="DataSoal/create" type="button" class="btn btn-primary"><i class="ti ti-plus"></i> Add
+                            <a href="DataSoal/create" type="button" class="btn btn-primary"><i class="ti ti-plus me-1"></i> Add
                                 Question</a>
                         </div>
 
