@@ -40,19 +40,19 @@
                      </a>
                  </li>
                  <li class="sidebar-item">
-                     <a class="sidebar-link {{ Request::is('DataSoal*') ? 'active' : ''}}" href="/DataSoal" aria-expanded="false">
+                     <a class="sidebar-link {{ Request::is('DataSoal*') ? 'active' : '' }}" href="/DataSoal"
+                         aria-expanded="false">
                          <span>
                              <i class="ti ti-clipboard-text"></i>
                          </span>
-                         <span class="hide-menu">Master Question</span>
+                         <span class="hide-menu">Test Question</span>
                      </a>
                  </li>
-
                  <li class="sidebar-item">
                      <a class="sidebar-link {{ Request::is('HistoryTest*') ? 'active' : '' }}" href="/HistoryTest"
                          aria-expanded="false">
                          <span>
-                            <i class="ti ti-history"></i>
+                             <i class="ti ti-history"></i>
                          </span>
                          <span class="hide-menu">History Test</span>
                      </a>
@@ -60,18 +60,41 @@
 
                  <li class="nav-small-cap">
                      <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+                     <span class="hide-menu">Data Learn Toefl</span>
+                 </li>
+                 <li class="sidebar-item ">
+                     <a class="sidebar-link {{ Request::is('StudyMaterials*') ? 'active' : '' }}" href="/StudyMaterials"
+                         aria-expanded="false">
+                         <span>
+                            <i class="ti ti-notebook"></i>
+                         </span>
+                         <span class="hide-menu">Study Matery</span>
+                     </a>
+                 </li>
+                 <li class="sidebar-item ">
+                     <a class="sidebar-link {{ Request::is('LearnQuestion*') ? 'active' : '' }}" href="/LearnQuestion"
+                         aria-expanded="false">
+                         <span>
+                             <i class="ti ti-file-vocabulary"></i>
+                         </span>
+                         <span class="hide-menu">Learn Question</span>
+                     </a>
+                 </li>
+
+                 <li class="nav-small-cap">
+                     <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
                      <span class="hide-menu">AUTH</span>
                  </li>
-                  <li class="sidebar-item">
+                 <li class="sidebar-item">
                      <a class="sidebar-link {{ Request::is('DataUser*') ? 'active' : '' }}" href="/DataUser"
                          aria-expanded="false">
                          <span>
-                            <i class="ti ti-users-group"></i>
+                             <i class="ti ti-users-group"></i>
                          </span>
                          <span class="hide-menu">Data User</span>
                      </a>
                  </li>
-                  <li class="sidebar-item">
+                 <li class="sidebar-item">
                      <a class="sidebar-link {{ Request::is('Profile*') ? 'active' : '' }}" href="/Profile"
                          aria-expanded="false">
                          <span>

@@ -123,7 +123,7 @@
                                     <h6 class="fw-semibold mb-0"><?php echo $number++; ?></h6>
                                 </td>
                                 <td class=""
-                                    style="width: 100%; white-space: pre-line; word-wrap: break-word; text-align: justify; color: black">
+                                    style="width: 40%; white-space: pre-line; word-wrap: break-word; text-align: left; color: black">
                                     <span class="d-flex align-items-center"
                                         style="text-align: justify"> {{$dataSoal['question']}} </span>
                                 </td>

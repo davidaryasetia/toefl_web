@@ -11,6 +11,8 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css" />
     <link rel="shortcut icon" type="image/png" href="{{ asset('assets/images/logos/short-logo.png') }}" />
     <link rel="stylesheet" href="{{ asset('assets/css/styles.min.css') }}" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css" />
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 
@@ -35,7 +37,7 @@
             @include('partials.navbar')
             <!-- Header End -->
 
-        
+
 
             <div id="main" class="container-fluid">
                 @yield('row')
@@ -53,6 +55,55 @@
         <link rel="stylesheet" href="https://cdn.datatables.net/2.0.7/css/dataTables.dataTables.css" />
         <script src="https://cdn.datatables.net/2.0.7/js/dataTables.js"></script>
         <script>
+            // T=======================  Table Test Toefl ===============================================
+            $('#table_dashboard').DataTable({
+                responsive: true,
+                columns: [{
+                        width: '6rem'
+                    },
+                    null,
+                    {
+                        width: '12px'
+                    },
+                    {
+                        width: '12px'
+                    },
+                    {
+                        width: '12px'
+                    },
+                    {
+                        width: '12px'
+                    },
+
+                    {
+                        width: '24px'
+                    },
+                ]
+            });
+            $('#table_paket').DataTable({
+                responsive: true,
+                columns: [{
+                        width: '6rem'
+                    },
+                    null,
+                    {
+                        width: '12px'
+                    },
+                    {
+                        width: '12px'
+                    },
+                    {
+                        width: '12px'
+                    },
+                    {
+                        width: '12px'
+                    },
+                ]
+            });
+            $('#table_master').DataTable({
+                // responsive: true,
+                autoWidth: false,
+            });
             $(document).ready(function() {
                 $('#table_history').DataTable({
                     responsive: true,
@@ -80,52 +131,6 @@
                         },
                     ]
                 });
-                $('#table_paket').DataTable({
-                    responsive: true,
-                    columns: [{
-                            width: '6rem'
-                        },
-                        null,
-                        {
-                            width: '12px'
-                        },
-                        {
-                            width: '12px'
-                        },
-                        {
-                            width: '12px'
-                        },
-                        {
-                            width: '12px'
-                        },
-                    ]
-                });
-                $('#table_dashboard').DataTable({
-                    responsive: true,
-                    columns: [{
-                            width: '6rem'
-                        },
-                        null,
-                        {
-                            width: '12px'
-                        },
-                        {
-                            width: '12px'
-                        },
-                        {
-                            width: '12px'
-                        },
-                        {
-                            width: '12px'
-                        },
-                        
-                        {
-                            width: '24px'
-                        },
-                        
-
-                    ]
-                });
                 $('#table_show_questions').DataTable({
                     responsive: true,
                     columns: [{
@@ -146,10 +151,32 @@
                         },
                     ]
                 });
-                $('#table_master').DataTable({
-                    // responsive: true,
-                    autoWidth: false,
+
+                // ===================== Table Learn Toefl ===================================
+                $('#table_material').DataTable({
+                    responsive: true,
+                    columns: [{
+                            width: '6px'
+                        },
+                        {
+                            width: '32px'
+                        },
+                        {
+                            width: '32px'
+                        }, 
+                        {
+                            width: '32px'
+                        }, 
+                        {
+                            width: '12px'
+                        },
+                        {
+                            width: '10px'
+                        },
+                    ]
                 });
+
+                // ===================== Tabel User ==========================================
                 $('#table_user').DataTable({
                     responsive: true,
                     columns: [{
@@ -159,7 +186,7 @@
                         {
                             width: '128px'
                         },
-                       
+
                         {
                             width: '12px'
                         },
@@ -171,8 +198,6 @@
                         },
                     ]
                 });
-
-                
             });
         </script>
 </body>

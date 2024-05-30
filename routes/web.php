@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\DataUserController;
 use App\Http\Controllers\Auth\UserController;
 use App\Http\Controllers\TestToeflController\DataSoalController;
 use App\Http\Controllers\HistoryController;
+use App\Http\Controllers\LearnToeflController\MaterialController;
 use App\Http\Controllers\TestToeflController\DashboardController;
 use App\Http\Controllers\TestToeflController\PaketController;
 use App\Http\Middleware\AuthenticateMiddleware;
@@ -30,6 +31,7 @@ Route::middleware([AuthenticateMiddleware::class])->group(function () {
     //     return view('dashboard');
     // })->name('dashboard');
 
+    // Route Test Toefl
     Route::resource('/dashboard', DashboardController::class);
     Route::resource('/PaketSoal', PaketController::class);
     Route::resource('/Profile', UserController::class);
@@ -37,4 +39,8 @@ Route::middleware([AuthenticateMiddleware::class])->group(function () {
     Route::get('/DataSoal', [DataSoalController::class, 'index'])->name('DataSoal.index');
     Route::resource('/HistoryTest', HistoryController::class)->only(['index', 'destroy']);
     Route::resource('/DataUser', DataUserController::class);
+
+    // Route Learn Toefl
+    Route::resource('/StudyMaterials', MaterialController::class);
+
 });

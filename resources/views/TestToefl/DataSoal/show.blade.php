@@ -11,7 +11,7 @@
                 <div class="d-flex justify-content-between align-items-center mb-2">
                     <div class="d-flex align-items-center mb-4">
                         <div>
-                            <a href="/DataSoal" class="d-flex align-items-center"><i class="ti ti-arrow-left me-3"
+                            <a href="{{ url()->previous() }}" class="d-flex align-items-center"><i class="ti ti-arrow-left me-3"
                                     style="font-size: 20px; color: black"></i>
                             </a>
                         </div>
@@ -20,8 +20,8 @@
                                 {{ $DataSoal[0]['type']['name'] }} </span>
                         </div>
                         <div class="me-3">
-                            <a href="{{ route('DataSoal.edit', ['DataSoal' => $DataSoal[0]['id']]) }}"
-                                class="btn btn-primary"><i class="ti ti-pencil me-1"></i><span>Edit Data</span></a>
+                            <a href="{{ route('DataSoal.edit', ['DataSoal' => $DataSoal[0]['id']]) }}" class="btn btn-primary"><i
+                                    class="ti ti-pencil me-1"></i><span>Edit Data</span></a>
                         </div>
                         <div class="me-3">
                             <form action="{{ route('DataSoal.destroy', ['DataSoal' => $DataSoal[0]['id']]) }}"
@@ -33,7 +33,6 @@
                                     <i class="ti ti-trash me-1"></i><span>Hapus Data</span>
                                 </button>
                             </form>
-
                         </div>
                     </div>
 

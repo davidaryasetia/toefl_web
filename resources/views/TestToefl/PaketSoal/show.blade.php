@@ -96,9 +96,9 @@
                                 <th class="border-bottom-0">
                                     <h6 class="fw-semibold mb-0">Edit</h6>
                                 </th>
-                                {{-- <th class="border-bottom-0">
-                                    <h6 class="fw-semibold mb-0">Delete</h6>
-                                </th> --}}
+                                    {{-- <th class="border-bottom-0">
+                                        <h6 class="fw-semibold mb-0">Delete</h6>
+                                    </th> --}}
 
                             </tr>
                         </thead>

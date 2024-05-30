@@ -14,7 +14,7 @@ class AuthenticateController extends Controller
     {
 
         if (Session::has('access_token')) {
-            return redirect()->route('dashboard');
+            return redirect('/dashboard');
         }
 
         header("Cache-Control: no-cache, no-store, must-revalidate");

@@ -7,11 +7,11 @@
                 <div class="d-flex justify-content-between align-items-center">
                     <div class="d-flex align-items-center mb-4">
                         <div>
-                            <span class="card-title fw-semibold me-3">List Question Packet</span>
+                            <span class="card-title fw-semibold me-3">Topic Study Matery</span>
                         </div>
                         <div>
-                            <a href="PaketSoal/create" type="button" class="btn btn-primary"><i class="ti ti-plus"></i>Add
-                                Packet</a>
+                            <a href="PaketSoal/create" type="button" class="btn btn-primary"><i class="ti ti-plus me-1"></i>Add
+                                Matery</a>
                         </div>
                     </div>
 
@@ -37,8 +37,8 @@
                     </script>
                 </div>
 
-                <div class="table-responsive">
-                    <table id="table_paket" class="table table-hover table-bordered text-nowrap mb-0 align-middle">
+                <div class="table-material">
+                    <table id="table_material" class="table table-hover table-bordered text-nowrap mb-0 align-middle">
 
                         <thead class="text-dark fs-4">
                             <tr>
@@ -46,49 +46,57 @@
                                     <h6 class="fw-semibold mb-0">No</h6>
                                 </th>
                                 <th class="border-bottom-0">
-                                    <h6 class="fw-semibold mb-0 text-center">Question Packet</h6>
+                                    <h6 class="fw-semibold mb-0 text-center">Modul</h6>
                                 </th>
                                 <th class="border-bottom-0">
-                                    <h6 class="fw-semibold mb-0 text-center">Show Question</h6>
+                                    <h6 class="fw-semibold mb-0 text-center">Matery</h6>
                                 </th>
                                 <th class="border-bottom-0">
-                                    <h6 class="fw-semibold mb-0 text-center">Download Packet</h6>
+                                    <h6 class="fw-semibold mb-0 text-center">Show Matery</h6>
                                 </th>
                                 <th class="border-bottom-0">
-                                    <h6 class="fw-semibold mb-0">Edit</h6>
+                                    <h6 class="fw-semibold mb-0 text-center">Edit</h6>
                                 </th>
                                 <th class="border-bottom-0">
-                                    <h6 class="fw-semibold mb-0">Delete</h6>
+                                    <h6 class="fw-semibold mb-0 text-center">Delete</h6>
                                 </th>
 
                             </tr>
                         </thead>
                         <tbody>
                             <?php $no = 1; ?>
-                            <?php foreach($data as $paket): ?>
+                            <?php foreach($data as $DataMaterial): ?>
                             <tr>
                                 <td class="border-bottom-0 text-center">
                                     <h6 class="fw-semibold mb-0"><?php echo $no++; ?></h6>
                                 </td>
                                 <td class="border-bottom-0">
                                     <div class="p-1">
-                                        <h6 class="fw-semibold mb-1 text-center"><?php echo $paket['name']; ?></h6>
+                                        <h6 class="fw-semibold mb-1 text-center"> {{$DataMaterial['type']['name']}} </h6>
                                     </div>
                                 </td>
-                                <td class="text-center"><a href="{{ route('PaketSoal.show', ['PaketSoal' => $paket['id']]) }}"><i class="ti ti-eye"></i></a></td>
-                                <td class="text-center"><a href=""><i class="ti ti-download"></i></a></td>
                                 <td class="border-bottom-0">
-                                    <p class="mb-0 fw-normal text-center"><a
-                                            href="{{ route('PaketSoal.edit', ['PaketSoal' => $paket['id']]) }}"><i
-                                                class="ti ti-pencil"></i></a></p>
+                                    <div class="p-1">
+                                        <h6 class="fw-semibold mb-1 text-center"> {{$DataMaterial['title']}} </h6>
+                                    </div>
                                 </td>
                                 <td class="border-bottom-0">
-                                    <form action="{{ route('PaketSoal.destroy', ['PaketSoal' => $paket['id']]) }}"
+                                    <p class="mb-0 fw-normal text-center"><a
+                                            href=""><i
+                                                class="ti ti-eye"></i></a></p>
+                                </td>
+                                <td class="border-bottom-0">
+                                    <p class="mb-0 fw-normal text-center"><a
+                                            href=""><i
+                                                class="ti ti-pencil"></i></a></p>
+                                </td>
+                                <td class="border-bottom-0 text-center">
+                                    <form action=""
                                         method="POST"
-                                        onsubmit="return confirm('Are you sure you want to delete this data <?php echo $paket['name']; ?> ?')">
+                                        onsubmit="return confirm('Are you sure you want to delete this data ">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="btn btn-link text-danger">
+                                        <button type="submit" class="btn btn-link text-danger text-center">
                                             <i class="ti ti-trash"></i>
                                         </button>
                                     </form>
