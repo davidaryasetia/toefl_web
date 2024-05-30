@@ -56,6 +56,9 @@
                                     <h6 class="fw-semibold mb-0">Total skor</h6>
                                 </th>
                                 <th class="border-bottom-0">
+                                    <h6 class="fw-semibold mb-0 text-center">Date Test</h6>
+                                </th>
+                                <th class="border-bottom-0">
                                     <h6 class="fw-semibold mb-0">Delete</h6>
                                 </th>
                             </tr>
@@ -82,6 +85,9 @@
                                         <h6 class="fw-semibold mb-1 text-center">
                                             {{ $history['reading_score'] + $history['reading_score'] + $history['reading_score'] }}
                                         </h6>
+                                    </td>
+                                    <td class="border-bottom-0 text-center">
+                                        <h6 class="fw-semibold mb-0">  {{ \Carbon\Carbon::parse($history['created_at'])->format('Y-m-d H:i:s') }} </h6>
                                     </td>
                                     <td class="border-bottom-0">
                                         <form action="{{ route('HistoryTest.destroy', $history['id']) }}" method="POST"

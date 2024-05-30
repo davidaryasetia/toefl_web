@@ -96,9 +96,9 @@
                                 <th class="border-bottom-0">
                                     <h6 class="fw-semibold mb-0">Edit</h6>
                                 </th>
-                                <th class="border-bottom-0">
+                                {{-- <th class="border-bottom-0">
                                     <h6 class="fw-semibold mb-0">Delete</h6>
-                                </th>
+                                </th> --}}
 
                             </tr>
                         </thead>
@@ -117,16 +117,16 @@
                                 <td class="border-bottom-0" style="width: 12px">
                                     <h6 class="fw-semibold mb-1 text-center">{{$question['type']['name']}} </h6>
                                 </td>
-                                <td class="border-bottom-0" style="width: 12px">
-                                    <h6 class="fw-semibold mb-1 text-center"></h6>
+                                <td class="border-bottom-0">
+                                    <p class="mb-0 fw-normal text-center"><a href="{{ route('DataSoal.show', ['DataSoal' => $question['id']]) }}"><i class="ti ti-eye"></i></a>
+                                    </p>
                                 </td>
-
                                 <td class="border-bottom-0">
                                     <p class="mb-0 fw-normal text-center"><a
-                                            href=""><i
+                                            href="{{ route('DataSoal.edit', ['DataSoal' => $question['id']]) }}"><i
                                                 class="ti ti-pencil"></i></a></p>
                                 </td>
-                                <td class="border-bottom-0">
+                                {{-- <td class="border-bottom-0">
                                     <form action=""
                                         method="POST"
                                         onsubmit="return confirm('Are you sure you want to delete this data: ">
@@ -136,7 +136,7 @@
                                             <i class="ti ti-trash"></i>
                                         </button>
                                     </form>
-                                </td>
+                                </td> --}}
                             </tr>
                             <?php endforeach ?>
                         </tbody>

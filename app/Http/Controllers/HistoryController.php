@@ -14,7 +14,7 @@ class HistoryController extends Controller
      * Display a listing of the resource.
      * @return string|View|Factory
      */
-    public function index(): string|View|Factory
+    public function index()
     {
         $access_token = session('access_token');
         if (!$access_token) {
@@ -23,9 +23,12 @@ class HistoryController extends Controller
 
         $response = Http::withHeaders([
             'apikey' => 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZubmVwbm53emxnc2VjdG5ueXljIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTQzNjIxOTAsImV4cCI6MjAyOTkzODE5MH0.IyrWPJ5CbV4wk1Q0sUwqN9Rpdt95IRJ8WQ_-BNS6gmY',
-            'Authorization' => 'Bearer ' . $access_token,
+            'Authorization' => 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZubmVwbm53emxnc2VjdG5ueXljIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTcxNDM2MjE5MCwiZXhwIjoyMDI5OTM4MTkwfQ._hV53FBRupn9t8RdAqUgEsWa_hXkZ0-e_Uc5OW9hkHw', 
             'Content-Type' => 'application/json',
-        ])->get('https://vnnepnnwzlgsectnnyyc.supabase.co/rest/v1/test_history?select=*, users(name)');
+        ])->get('https://vnnepnnwzlgsectnnyyc.supabase.co/rest/v1/test_history', [
+            'select' => 'id, listening_score, structure_score, reading_score, user_id, users(id,name), created_at',
+            'order' => 'created_at.desc', 
+        ]);
 
 
         if ($response->successful()) {
@@ -105,7 +108,7 @@ class HistoryController extends Controller
 
         $response = Http::withHeaders([
             'apikey' => 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZubmVwbm53emxnc2VjdG5ueXljIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTQzNjIxOTAsImV4cCI6MjAyOTkzODE5MH0.IyrWPJ5CbV4wk1Q0sUwqN9Rpdt95IRJ8WQ_-BNS6gmY',
-            'Authorization' => 'Bearer ' . $access_token,
+            'Authorization' => 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZubmVwbm53emxnc2VjdG5ueXljIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTcxNDM2MjE5MCwiZXhwIjoyMDI5OTM4MTkwfQ._hV53FBRupn9t8RdAqUgEsWa_hXkZ0-e_Uc5OW9hkHw', 
             'Content-Type' => 'application/json',
         ])->delete('https://vnnepnnwzlgsectnnyyc.supabase.co/rest/v1/test_history?id=eq.' . $id);
 

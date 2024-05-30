@@ -22,7 +22,7 @@
                     <div class="me-2">
                         <span class="card-title fw-semibold">Add Question</span>
                     </div>
-                    <button type="button" class="btn rounded-pill btn-outline-primary" id="addQuestion">Add Row</button>
+                    {{-- <button type="button" class="btn rounded-pill btn-outline-primary" id="addQuestion">Add Row</button> --}}
                 </div>
 
                 <form action="{{ route('DataSoal.store') }}" method="POST">
@@ -62,13 +62,14 @@
                                     </div>
                                 </div>
                             </div>
+                            <hr style="color: black; font-weight: bold">
                             <div class="row">
-                                <div class="mb-4 col-lg-6">
+                                <div class="mb-4 col-lg-9">
                                     <label for="paket" class="form-label">Answer 1</label>
                                     <input type="text" class="form-control" id="answer[]" name="answer[]" aria-describedby="emailHelp" 
                                         placeholder="Input Answer 1....." />
                                 </div>
-                                <div class="mb-4 col-lg-6">
+                                <div class="mb-4 col-lg-3">
                                     <label for="paket" class="form-label">Is Correct</label>
                                     <div class="">
                                         <select id="defaultSelect" id="correct[]" name="correct[]" class="form-select">
@@ -80,12 +81,12 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="mb-4 col-lg-6">
+                                <div class="mb-4 col-lg-9">
                                     <label for="paket" class="form-label">Answer 2</label>
                                     <input type="text" class="form-control" id="answer[]" name="answer[]" aria-describedby="emailHelp" 
                                         placeholder="Input Answer 2....." />
                                 </div>
-                                <div class="mb-4 col-lg-6">
+                                <div class="mb-4 col-lg-3">
                                     <label for="paket" class="form-label">Is Correct</label>
                                     <div class="">
                                         <select id="defaultSelect" id="correct[]" name="correct[]" class="form-select">
@@ -97,12 +98,12 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="mb-4 col-lg-6">
+                                <div class="mb-4 col-lg-9">
                                     <label for="paket" class="form-label">Answer 3</label>
                                     <input type="text" class="form-control" id="answer[]" name="answer[]" aria-describedby="emailHelp" 
                                         placeholder="Input Answer 3....." />
                                 </div>
-                                <div class="mb-4 col-lg-6">
+                                <div class="mb-4 col-lg-3">
                                     <label for="paket" class="form-label">Is Correct</label>
                                     <div class="">
                                         <select id="defaultSelect" id="correct[]" name="correct[]" class="form-select">
@@ -114,12 +115,12 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="mb-4 col-lg-6">
+                                <div class="mb-4 col-lg-9">
                                     <label for="paket" class="form-label">Answer 4</label>
                                     <input type="text" class="form-control" id="answer[]" name="answer[]" aria-describedby="emailHelp" rows="3"
                                         placeholder="Input Answer 4....." />
                                 </div>
-                                <div class="mb-4 col-lg-6">
+                                <div class="mb-4 col-lg-3">
                                     <label for="paket" class="form-label">Is Correct</label>
                                     <div class="">
                                         <select id="defaultSelect" id="correct[]" name="correct[]" class="form-select">
@@ -130,7 +131,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <hr style="color: black">
+                            <hr style="color: black; font-weight: bold">
                         </div>
                     </div>
                     <div>

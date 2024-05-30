@@ -25,7 +25,8 @@ class DashboardController extends Controller
             'Authorization' => 'Bearer ' . $access_token,
             'Content-Type' => 'application/json',
         ])->get('https://vnnepnnwzlgsectnnyyc.supabase.co/rest/v1/test_leaderboard?', [
-            'select' => 'listening_score, structure_score, reading_score, total_score, user_id, users(id,name)',
+            'select' => 'listening_score, structure_score, reading_score, total_score, user_id, users(id,name), created_at',
+            'order' => 'created_at.desc', 
         ]);
 
         if ($response->successful()) {

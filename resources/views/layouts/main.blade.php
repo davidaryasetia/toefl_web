@@ -15,6 +15,9 @@
 </head>
 
 <body>
+    @php
+        use Carbon\Carbon;
+    @endphp
 
 
     <!--  Body Wrapper -->
@@ -31,6 +34,8 @@
             <!-- Header Start -->
             @include('partials.navbar')
             <!-- Header End -->
+
+        
 
             <div id="main" class="container-fluid">
                 @yield('row')
@@ -69,6 +74,9 @@
                         },
                         {
                             width: '12px'
+                        },
+                        {
+                            width: '24px'
                         },
                     ]
                 });
@@ -110,6 +118,12 @@
                         {
                             width: '12px'
                         },
+                        
+                        {
+                            width: '24px'
+                        },
+                        
+
                     ]
                 });
                 $('#table_show_questions').DataTable({
