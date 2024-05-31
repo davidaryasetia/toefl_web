@@ -87,13 +87,48 @@
                 <div class="row">
                     <div class="mb-4 col-lg-12">
                         <label for="paket" class="form-label">Content</label>
-                        <div class="" style="border: 0.5px solid #5A6A85;border-radius: 8px; padding: 10px; ">
+                        <div class="" style="border: 0.5px solid #5A6A85;border-radius: 8px; padding: 10px;">
                             <pre style="color: #5A6A85; width: 100%; white-space: pre-line; word-wrap: break-word; text-align: justify; ">{{ $data[0]['content'] }}</pre>
                         </div>
                     </div>
                 </div>
+                <hr style="color:black; font-weight: bold">
+
+                <div class="row">
+                    <div class="mb-3 col-lg-12" style="">
+                         <label for="paket" class="form-label d-block" style="">Question
+                            </label>
+                        <pre style="border: 0.5px solid #5A6A85;border-radius: 8px; padding: 10px;">{{$data_question[0]['question']}} </pre>
+                    </div>
+                </div>
+
+                <?php $no=1; ?>
+                <?php foreach($data_answer as $answer): ?>
+                <?php $border = $answer['value'] === true ? 'border: 0.5px solid green;' : 'border: 0.5px solid red;'; ?>
+                <?php $font = $answer['value'] === true ? 'color: green;' : 'color: red'; ?>
+                <div class="row" style="">
+                    <div class="mb-3 col-lg-9">
+                        <label for="paket" class="form-label d-block" style="{{$font}}">Answer <?php $no++; ?>
+                            </label>
+                        <div class="" style="border-radius: 8px; padding: 10px; border: 0.1px solid #5A6A85; {{ $border . $font }}">
+                            <span style="color: #5A6A85"> {{$answer['answer']}} </span>
+                        </div>
+                    </div>
+                    <div class="mb-3 col-lg-3">
+                        <label for="paket" class="form-label d-block" style="{{ $font }}">Title
+                            </label>
+                        <div class="" style="border-radius: 8px; padding: 10px; {{ $border . $font }}">
+                            <span style="color: #5A6A85"> {{ $answer['value'] === true ? 'true' : 'false' }} </span>
+                        </div>
+                    </div>
+                </div>
+                <?php endforeach; ?>
                 
-                <hr style="color: #5A6A85; font-weight: 500">
+
+                <hr style="color:black; font-weight: bold">
+
+                    
+
 
                 {{-- END Content Here --}}
             </div>

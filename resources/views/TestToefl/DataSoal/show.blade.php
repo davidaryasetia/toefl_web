@@ -35,9 +35,6 @@
                             </form>
                         </div>
                     </div>
-
-
-
                     <div class="col-lg-4">
                         @if (session('success'))
                             <div class="alert alert-primary" style role="alert">
@@ -64,7 +61,7 @@
 
                 {{-- Content Here --}}
                 <div class="row">
-                    <div class="mb-4 col-lg-12">
+                    <div class="mb-3 col-lg-12">
                         <label for="paket" class="form-label">Question</label>
                         <div class="" style="border: 0.5px solid black;border-radius: 8px; padding: 10px; ">
                             <span style="color: black">{{ $DataSoal[0]['question'] }}</span>
@@ -85,7 +82,7 @@
                         </div>
 
                     </div>
-                    <div class="mb-4 col-lg-3">
+                    <div class="mb-3 col-lg-3">
                         <label for="paket" class="form-label" style="{{ $font }}">Is Correct</label>
                         <div class="" style="border-radius: 8px; padding: 10px; {{ $border . $font }}">
                             <span style="">{{ $data_answer['is_correct'] === true ? 'true' : 'false' }}</span>

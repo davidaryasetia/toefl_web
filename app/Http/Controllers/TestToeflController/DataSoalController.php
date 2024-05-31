@@ -177,7 +177,6 @@ class DataSoalController extends Controller
 
             if ($response_answer->successful()) {
                 $data_answer = $response_answer->json();
-
                 return view('TestToefl.DataSoal.show', [
                     'title' => 'Edit Soal',
                     'DataSoal' => $data,

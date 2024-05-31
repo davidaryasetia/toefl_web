@@ -71,15 +71,6 @@
                          <span class="hide-menu">Study Matery</span>
                      </a>
                  </li>
-                 <li class="sidebar-item ">
-                     <a class="sidebar-link {{ Request::is('LearnQuestion*') ? 'active' : '' }}" href="/LearnQuestion"
-                         aria-expanded="false">
-                         <span>
-                             <i class="ti ti-vocabulary"></i>
-                         </span>
-                         <span class="hide-menu">Learn Question</span>
-                     </a>
-                 </li>
 
                  <li class="nav-small-cap">
                      <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
