@@ -194,6 +194,9 @@
                             width: '12px'
                         },
                         {
+                            width: '12px'
+                        },
+                        {
                             width: '10px'
                         },
                     ]

@@ -52,8 +52,12 @@
                                     <h6 class="fw-semibold mb-0 text-center">Matery</h6>
                                 </th>
                                 <th class="border-bottom-0">
+                                    <h6 class="fw-semibold mb-0 text-center">Add Question</h6>
+                                </th>
+                                <th class="border-bottom-0">
                                     <h6 class="fw-semibold mb-0 text-center">Show Matery</h6>
                                 </th>
+                                
                                 <th class="border-bottom-0">
                                     <h6 class="fw-semibold mb-0 text-center">Edit</h6>
                                 </th>
@@ -79,6 +83,11 @@
                                     <div class="p-1">
                                         <h6 class="fw-semibold mb-1 text-center"> {{$DataMaterial['title']}} </h6>
                                     </div>
+                                </td>
+                                <td class="border-bottom-0">
+                                    <p class="mb-0 fw-normal text-center"><a
+                                            href="{{ route('StudyMaterials.show', ['StudyMaterial' => $DataMaterial['id']]) }}"><i
+                                                class="ti ti-plus me-2"></i> Question</a></p>
                                 </td>
                                 <td class="border-bottom-0">
                                     <p class="mb-0 fw-normal text-center"><a

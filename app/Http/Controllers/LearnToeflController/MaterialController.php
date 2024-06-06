@@ -112,27 +112,27 @@ class MaterialController extends Controller
             'Content-Type' => 'application/json',
         ]))->get('https://vnnepnnwzlgsectnnyyc.supabase.co/rest/v1/material?', [
             'id' => 'eq.' . $id,
-            'select' => 'id,modul_id,title,content,type(id,name),example_question(id,material_id,question,url,pembahasan)',
+            'select' => 'id,modul_id,title,content,type(id,name)',
         ]);
 
         if ($response->successful()) {
             $data = $response->json();
-            $data_answer_id = $response->json()[0]['id']; //data 1
-            $response_answer = Http::withHeaders(([
+            $data_example_answer_id = $response->json()[0]['id']; //data 1
+            $response_example_answer = Http::withHeaders(([
                 'apikey' => 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZubmVwbm53emxnc2VjdG5ueXljIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTQzNjIxOTAsImV4cCI6MjAyOTkzODE5MH0.IyrWPJ5CbV4wk1Q0sUwqN9Rpdt95IRJ8WQ_-BNS6gmY',
                 'Authorization' => 'Bearer ' . $access_token,
                 'Content-Type' => 'application/json',
-            ]))->get('https://vnnepnnwzlgsectnnyyc.supabase.co/rest/v1/example_answer?', [
-                'example_id' => 'eq.' . $data_answer_id,
-                'select' => 'id, example_id, answer, value',
+            ]))->get('https://vnnepnnwzlgsectnnyyc.supabase.co/rest/v1/example_question?', [
+                'material_id' => 'eq.' . $data_example_answer_id,
+                'select' => 'id, material_id, question, url, created_at, pembahasan, example_answer(id, example_id, answer, value)' 
             ]);
 
-            if ($response_answer->successful()) {
-                $data_answer = $response_answer->json(); // data 2
+            if ($response_example_answer->successful()) {
+                $data_example_answer = $response_example_answer->json(); // data 2
                 return view('LearnToefl.StudyMaterials.show', [
                     'title' => 'Show Question Packet',
                     'data' => $data, // data material
-                    'data_answer' => $data_answer, // data_answer
+                    'data_example_answer' => $data_example_answer, // data_answer
                 ]);
 
             } elseif ($response->status() === 400) {
@@ -146,7 +146,7 @@ class MaterialController extends Controller
                 return 'return error response here';
             }
         } else {
-            return 'in parent';
+            return 'in parent disini';
         }
     }
 

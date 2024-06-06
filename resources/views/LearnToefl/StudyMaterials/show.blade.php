@@ -11,18 +11,18 @@
                 <div class="d-flex justify-content-between align-items-center mb-2">
                     <div class="d-flex align-items-center mb-4">
                         <div>
-                            <a href="{{ url()->previous() }}" class="d-flex align-items-center"><i class="ti ti-arrow-left me-3"
-                                    style="font-size: 20px; color: #5A6A85"></i>
+                            <a href="{{ url()->previous() }}" class="d-flex align-items-center"><i
+                                    class="ti ti-arrow-left me-3" style="font-size: 20px; color: #5A6A85"></i>
                             </a>
                         </div>
-                         <div class="me-3">
+                        <div class="me-3">
                             <span class="card-title fw-semibold">Matery - {{ $data[0]['title'] }} :
                                 {{ $data[0]['type']['name'] }} </span>
                         </div>
-                        
+
                         <div class="me-3">
-                            <a href="{{ route('StudyMaterials.edit', ['StudyMaterial' => $data[0]['id']]) }}" class="btn btn-primary"><i
-                                    class="ti ti-pencil me-1"></i><span>Edit Data</span></a>
+                            <a href="{{ route('StudyMaterials.edit', ['StudyMaterial' => $data[0]['id']]) }}"
+                                class="btn btn-primary"><i class="ti ti-pencil me-1"></i><span>Edit Data</span></a>
                         </div>
                         <div class="me-3">
                             <form action="{{ route('StudyMaterials.destroy', ['StudyMaterial' => $data[0]['id']]) }}"
@@ -36,8 +36,6 @@
                             </form>
                         </div>
                     </div>
-
-
 
                     <div class="col-lg-4">
                         @if (session('success'))
@@ -68,22 +66,22 @@
                     <input type="hidden" value="{{ $data[0]['id'] }}" name="id">
                     <div class="mb-3 col-lg-6 ">
                         <label for="paket" class="form-label d-block" style="">Modul Type
-                            </label>
+                        </label>
                         <div class="" style="border-radius: 8px; padding: 10px; border: 0.1px solid #5A6A85; ">
-                            <span style="color: #5A6A85"> {{$data[0]['type']['name']}} </span>
+                            <span style="color: #5A6A85"> {{ $data[0]['type']['name'] }} </span>
                         </div>
                     </div>
                     <div class="mb-3 col-lg-6 ">
                         <label for="paket" class="form-label d-block" style="">Title
-                            </label>
+                        </label>
                         <div class="" style="border-radius: 8px; padding: 10px; border: 0.5px solid #5A6A85">
-                            <span style="color: #5A6A85"> {{$data[0]['title']}} </span>
+                            <span style="color: #5A6A85"> {{ $data[0]['title'] }} </span>
                         </div>
 
                     </div>
-                    
+
                 </div>
-                
+
                 <div class="row">
                     <div class="mb-4 col-lg-12">
                         <label for="paket" class="form-label">Content</label>
@@ -94,30 +92,41 @@
                 </div>
                 <hr style="color:black; font-weight: bold">
 
+                <?php $no = 1; ?>
+
+
+
+                <hr>
+                <?php $no = 1; ?>
+                <?php foreach($data_example_answer as $example_answer): ?>
+                <?php $border = $example_answer['example_answer'][0]['value'] === true ? 'border: 0.5px solid green;' : 'border: 0.5px solid red;'; ?>
+                <?php $font = $example_answer['example_answer'][0]['value'] === true ? 'color: green;' : 'color: red'; ?>
+
                 <div class="row">
                     <div class="mb-3 col-lg-12" style="">
-                         <label for="paket" class="form-label d-block" style="">Question
-                            </label>
-                        <pre style="border: 0.5px solid #5A6A85;border-radius: 8px; padding: 10px;">{{$data[0]['example_question'][0]['question']}} </pre>
+                        <label for="paket" class="form-label d-block" style="">Question {{$no++}}
+                        </label>
+                        <pre style="border: 0.5px solid #5A6A85;border-radius: 8px; padding: 10px;">{{ $example_answer['question'] }} </pre>
                     </div>
                 </div>
-                
-                <hr>
-                <?php $no=1; ?>
-                <?php foreach($data_answer as $answer): ?>
+
+                <?php $nomer=1;?>
+                <?php foreach($example_answer['example_answer'] as $answer): ?>
                 <?php $border = $answer['value'] === true ? 'border: 0.5px solid green;' : 'border: 0.5px solid red;'; ?>
                 <?php $font = $answer['value'] === true ? 'color: green;' : 'color: red'; ?>
                 <div class="row" style="">
                     <div class="mb-3 col-lg-9">
-                        <label for="paket" class="form-label d-block" style="{{$font}}">Answer <?php $no++; ?>
-                            </label>
-                        <div class="" style="border-radius: 8px; padding: 10px; border: 0.1px solid #5A6A85; {{ $border . $font }}">
-                            <span style="color: #5A6A85"> {{$answer['answer']}} </span>
+                        <label for="paket" class="form-label d-block" style="{{ $font }}">Answer {{$nomer++}}
+                            <?php $no++; ?>
+                        </label>
+                        <div class=""
+                            style="border-radius: 8px; padding: 10px; border: 0.1px solid #5A6A85; {{ $border . $font }}">
+                            <span style="color: #5A6A85"> {{ $answer['answer'] }} </span>
                         </div>
                     </div>
                     <div class="mb-3 col-lg-3">
                         <label for="paket" class="form-label d-block" style="{{ $font }}">Title
-                            </label>
+                        </label>
                         <div class="" style="border-radius: 8px; padding: 10px; {{ $border . $font }}">
                             <span style="color: #5A6A85"> {{ $answer['value'] === true ? 'true' : 'false' }} </span>
                         </div>
@@ -125,15 +134,20 @@
                 </div>
                 <?php endforeach; ?>
                 
-
-                <hr style="color:black; font-weight: bold">
                 <div class="row">
                     <div class="mb-3 col-lg-12" style="">
-                         <label for="paket" class="form-label d-block" style="">Dissussion
-                            </label>
-                        <pre style="border: 0.5px solid #5A6A85;border-radius: 8px; padding: 10px;">{{$data[0]['example_question'][0]['pembahasan']}} </pre>
+                        <label for="paket" class="form-label d-block" style="">Dissussion Question 
+                        </label>
+                        <pre style="border: 0.5px solid #5A6A85;border-radius: 8px; padding: 10px;">{{ $example_answer['pembahasan'] }}</pre>
                     </div>
                 </div>
+                <hr style="color:black; font-weight: bold">
+
+                <?php endforeach; ?>
+
+
+
+
                 {{-- END Content Here --}}
             </div>
         </div>
