@@ -112,43 +112,29 @@ class MaterialController extends Controller
             'Content-Type' => 'application/json',
         ]))->get('https://vnnepnnwzlgsectnnyyc.supabase.co/rest/v1/material?', [
             'id' => 'eq.' . $id,
-            'select' => 'id, modul_id, title, content, created_at, type(id, name, created_at)',
+            'select' => 'id,modul_id,title,content,type(id,name),example_question(id,material_id,question,url,pembahasan)',
         ]);
 
         if ($response->successful()) {
-            $data = $response->json(); //data 1
-            $response_example = Http::withHeaders(([
+            $data = $response->json();
+            $data_answer_id = $response->json()[0]['id']; //data 1
+            $response_answer = Http::withHeaders(([
                 'apikey' => 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZubmVwbm53emxnc2VjdG5ueXljIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTQzNjIxOTAsImV4cCI6MjAyOTkzODE5MH0.IyrWPJ5CbV4wk1Q0sUwqN9Rpdt95IRJ8WQ_-BNS6gmY',
                 'Authorization' => 'Bearer ' . $access_token,
                 'Content-Type' => 'application/json',
-            ]))->get('https://vnnepnnwzlgsectnnyyc.supabase.co/rest/v1/example_question?', [
-                'material_id' => 'eq.' . $id,
-                'select' => 'id, material_id, question, url',
+            ]))->get('https://vnnepnnwzlgsectnnyyc.supabase.co/rest/v1/example_answer?', [
+                'example_id' => 'eq.' . $data_answer_id,
+                'select' => 'id, example_id, answer, value',
             ]);
 
-
-            if ($response_example->successful()) {
-                $data_question = $response_example->json(); // data 2
-                $get_id_example_answer = $response_example->json()[0]['id']; // data 2 
-                $response_answer = Http::withHeaders(([
-                    'apikey' => 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZubmVwbm53emxnc2VjdG5ueXljIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTQzNjIxOTAsImV4cCI6MjAyOTkzODE5MH0.IyrWPJ5CbV4wk1Q0sUwqN9Rpdt95IRJ8WQ_-BNS6gmY',
-                    'Authorization' => 'Bearer ' . $access_token,
-                    'Content-Type' => 'application/json',
-                ]))->get('https://vnnepnnwzlgsectnnyyc.supabase.co/rest/v1/example_answer?',  [
-                    'example_id' => 'eq.' . $get_id_example_answer,
-                    'select' => 'id, example_id, answer, value, created_at',
+            if ($response_answer->successful()) {
+                $data_answer = $response_answer->json(); // data 2
+                return view('LearnToefl.StudyMaterials.show', [
+                    'title' => 'Show Question Packet',
+                    'data' => $data, // data material
+                    'data_answer' => $data_answer, // data_answer
                 ]);
 
-                if ($response_answer->successful()) {
-                    $data_answer = $response_answer->json(); // data 3
-
-                    return view('LearnToefl.StudyMaterials.show', [
-                        'title' => 'Show Question Packet',
-                        'data' => $data, // data material
-                        'data_question' => $data_question, // data_question
-                        'data_answer' => $data_answer, // data_answer
-                    ]);
-                }
             } elseif ($response->status() === 400) {
                 session()->flash('error', 'Bad Request : ' . $response['message']);
                 return redirect('/StudyMaterials');
@@ -159,6 +145,8 @@ class MaterialController extends Controller
             } else {
                 return 'return error response here';
             }
+        } else {
+            return 'in parent';
         }
     }
 

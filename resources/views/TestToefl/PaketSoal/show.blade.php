@@ -76,7 +76,7 @@
 
 
                 <div class="table-responsive">
-                    <table id="table_show_question" class="table table-hover table-bordered text-nowrap mb-0 align-middle">
+                    <table id="table_show_questions" class="table table-hover table-bordered text-nowrap mb-0 align-middle">
 
                         <thead class="text-dark fs-4">
                             <tr>

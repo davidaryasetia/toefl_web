@@ -98,10 +98,11 @@
                     <div class="mb-3 col-lg-12" style="">
                          <label for="paket" class="form-label d-block" style="">Question
                             </label>
-                        <pre style="border: 0.5px solid #5A6A85;border-radius: 8px; padding: 10px;">{{$data_question[0]['question']}} </pre>
+                        <pre style="border: 0.5px solid #5A6A85;border-radius: 8px; padding: 10px;">{{$data[0]['example_question'][0]['question']}} </pre>
                     </div>
                 </div>
-
+                
+                <hr>
                 <?php $no=1; ?>
                 <?php foreach($data_answer as $answer): ?>
                 <?php $border = $answer['value'] === true ? 'border: 0.5px solid green;' : 'border: 0.5px solid red;'; ?>
@@ -126,10 +127,13 @@
                 
 
                 <hr style="color:black; font-weight: bold">
-
-                    
-
-
+                <div class="row">
+                    <div class="mb-3 col-lg-12" style="">
+                         <label for="paket" class="form-label d-block" style="">Dissussion
+                            </label>
+                        <pre style="border: 0.5px solid #5A6A85;border-radius: 8px; padding: 10px;">{{$data[0]['example_question'][0]['pembahasan']}} </pre>
+                    </div>
+                </div>
                 {{-- END Content Here --}}
             </div>
         </div>

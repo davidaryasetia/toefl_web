@@ -60,7 +60,7 @@
             $('#table_dashboard').DataTable({
                 responsive: true,
                 columns: [{
-                        width: '6rem'
+                        width: '6px'
                     },
                     null,
                     {
@@ -84,7 +84,7 @@
             $('#table_paket').DataTable({
                 responsive: true,
                 columns: [{
-                        width: '6rem'
+                        width: '6px'
                     },
                     null,
                     {
@@ -102,14 +102,26 @@
                 ]
             });
             $('#table_master').DataTable({
-                // responsive: true,
+                responsive: true,
+                "scrollY": "500px",
+                "pageLength": 10, // Set initial page length to 5
+                "lengthMenu": [
+                    [10, 15, 20],
+                    [10, 15, 20]
+                ],
                 autoWidth: false,
             });
             $(document).ready(function() {
                 $('#table_history').DataTable({
                     responsive: true,
+                    "scrollY": "500px",
+                    "pageLength": 10, // Set initial page length to 5
+                    "lengthMenu": [
+                        [10, 15, 20],
+                        [10, 15, 20]
+                    ],
                     columns: [{
-                            width: '10px'
+                            width: '6px'
                         },
                         null,
                         {
@@ -134,8 +146,14 @@
                 });
                 $('#table_show_questions').DataTable({
                     responsive: true,
+                    "scrollY": "500px",
+                    "pageLength": 10, // Set initial page length to 5
+                    "lengthMenu": [
+                        [10, 15, 20],
+                        [10, 15, 20]
+                    ],
                     columns: [{
-                            width: '6rem'
+                            width: '6px'
                         },
                         null,
                         {
@@ -147,15 +165,19 @@
                         {
                             width: '12px'
                         },
-                        {
-                            width: '12px'
-                        },
+                        
                     ]
                 });
 
                 // ===================== Table Learn Toefl ===================================
                 $('#table_material').DataTable({
                     responsive: true,
+                    "scrollY": "500px",
+                    "pageLength": 10, // Set initial page length to 5
+                    "lengthMenu": [
+                        [10, 15, 20],
+                        [10, 15, 20]
+                    ],
                     columns: [{
                             width: '6px'
                         },
@@ -164,10 +186,10 @@
                         },
                         {
                             width: '32px'
-                        }, 
+                        },
                         {
                             width: '32px'
-                        }, 
+                        },
                         {
                             width: '12px'
                         },
@@ -180,8 +202,14 @@
                 // ===================== Tabel User ==========================================
                 $('#table_user').DataTable({
                     responsive: true,
+                    "scrollY": "500px",
+                    "pageLength": 10, // Set initial page length to 5
+                    "lengthMenu": [
+                        [10, 15, 20],
+                        [10, 15, 20]
+                    ],
                     columns: [{
-                            width: '6rem'
+                            width: '6px'
                         },
                         null,
                         {
