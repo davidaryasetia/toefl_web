@@ -7,6 +7,7 @@ use App\Http\Controllers\TestToeflController\DataSoalController;
 use App\Http\Controllers\HistoryController;
 use App\Http\Controllers\LearnToeflController\LearnQuestionController;
 use App\Http\Controllers\LearnToeflController\MaterialController;
+use App\Http\Controllers\LearnToeflController\SynonymController;
 use App\Http\Controllers\TestToeflController\DashboardController;
 use App\Http\Controllers\TestToeflController\PaketController;
 use App\Http\Middleware\AuthenticateMiddleware;
@@ -42,7 +43,14 @@ Route::middleware([AuthenticateMiddleware::class])->group(function () {
     Route::resource('/DataUser', DataUserController::class);
 
     // Route Learn Toefl
-    // Route::resource('/StudyMaterials', MaterialController::class);
     Route::resource('/StudyMaterials', MaterialController::class);
+    Route::get('/StudyMaterials/question/create/{id}', [MaterialController::class, 'create_question']);
+    Route::post('/StudyMaterials/question/store', [MaterialController::class, 'store_question'])->name('StudyMaterials.store_question');
+    Route::get('/StudyMaterials/show_question/{id}', [MaterialController::class, 'show_question']);
+    Route::get('/StudyMaterials/show_detail_question/{id}', [MaterialController::class, 'show_detail_question']);
+    Route::get('/StudyMaterials/edit_detail_question/{id}', [MaterialController::class, 'edit_detail_question']);
+    Route::patch('/StudyMaterials/update_detail_question/{id}', [MaterialController::class, 'update_detail_question'])->name('StudyMaterials.update_detail_question');
+    Route::delete('/StudyMaterials/question/delete/{id}', [MaterialController::class, 'destroy_question'])->name('StudyMaterials.destroy_question');
     Route::resource('/LearnQuestion', LearnQuestionController::class);
+    Route::resource('/Synonym', SynonymController::class);
 });

@@ -7,7 +7,7 @@
                 <div class="d-flex justify-content-between align-items-center">
                     <div class="d-flex align-items-center mb-4">
                         <div>
-                            <span class="card-title fw-semibold me-3">Topic Study Matery</span>
+                            <span class="card-title fw-semibold me-3">Tabel Synonym Matery</span>
                         </div>
                         <div>
                             <a href="StudyMaterials/create" type="button" class="btn btn-primary"><i class="ti ti-plus me-1"></i>Add
@@ -38,7 +38,7 @@
                 </div>
 
                 <div class="table-material">
-                    <table id="table_material" class="table table-hover table-bordered text-nowrap mb-0 align-middle">
+                    <table id="table_synonym" class="table table-hover table-bordered text-nowrap mb-0 align-middle">
 
                         <thead class="text-dark fs-4">
                             <tr>
@@ -46,18 +46,11 @@
                                     <h6 class="fw-semibold mb-0">No</h6>
                                 </th>
                                 <th class="border-bottom-0">
-                                    <h6 class="fw-semibold mb-0 text-center">Modul</h6>
+                                    <h6 class="fw-semibold mb-0 text-center">Word 1</h6>
                                 </th>
                                 <th class="border-bottom-0">
-                                    <h6 class="fw-semibold mb-0 text-center">Matery</h6>
+                                    <h6 class="fw-semibold mb-0 text-center">Word 2</h6>
                                 </th>
-                                <th class="border-bottom-0">
-                                    <h6 class="fw-semibold mb-0 text-center">Add Question</h6>
-                                </th>
-                                <th class="border-bottom-0">
-                                    <h6 class="fw-semibold mb-0 text-center">Show Matery</h6>
-                                </th>
-                                
                                 <th class="border-bottom-0">
                                     <h6 class="fw-semibold mb-0 text-center">Edit</h6>
                                 </th>
@@ -69,45 +62,34 @@
                         </thead>
                         <tbody>
                             <?php $no = 1; ?>
-                            <?php foreach($data as $DataMaterial): ?>
+                            <?php foreach($data as $data_synonym): ?>
                             <tr>
                                 <td class="border-bottom-0 text-center">
-                                    <h6 class="fw-semibold mb-0"> {{$DataMaterial['id']}} </h6>
+                                    <h6 class="fw-semibold mb-0"> {{$no++}} </h6>
                                 </td>
                                 <td class="border-bottom-0">
                                     <div class="p-1">
-                                        <h6 class="fw-semibold mb-1 text-center"> {{$DataMaterial['type']['name']}} </h6>
+                                        <h6 class="fw-semibold mb-1 text-center"> {{$data_synonym['word1']}} </h6>
                                     </div>
                                 </td>
                                 <td class="border-bottom-0">
                                     <div class="p-1">
-                                        <h6 class="fw-semibold mb-1 text-center"> {{$DataMaterial['title']}} </h6>
+                                        <h6 class="fw-semibold mb-1 text-center"> {{$data_synonym['word1']}} </h6>
                                     </div>
                                 </td>
                                 <td class="border-bottom-0">
                                     <p class="mb-0 fw-normal text-center"><a
-                                            href="/StudyMaterials/show_question/{{$DataMaterial['id']}}"><i
-                                                class="ti ti-plus me-2"></i> Add Question</a></p>
-                                </td>
-                                <td class="border-bottom-0">
-                                    <p class="mb-0 fw-normal text-center"><a
-                                            href="{{ route('StudyMaterials.show', ['StudyMaterial' => $DataMaterial['id']]) }}"><i
-                                                class="ti ti-eye"></i></a></p>
-                                </td>
-                                
-                                <td class="border-bottom-0">
-                                    <p class="mb-0 fw-normal text-center"><a
-                                            href="{{ route('StudyMaterials.edit', ['StudyMaterial' => $DataMaterial['id']]) }}"><i
+                                            href="{{ route('Synonym.edit', ['Synonym' => $data_synonym['id']]) }}"><i
                                                 class="ti ti-pencil"></i></a></p>
                                 </td>
-                                <td class="border-bottom-0">
-                                    <form action="{{ route('StudyMaterials.destroy', ['StudyMaterial' => $DataMaterial['id']]) }}"
+                                <td class="border-bottom-0 text-center">
+                                    <form action="{{ route('Synonym.destroy', ['Synonym' => $data_synonym['id']]) }}"
                                         method="POST"
-                                        onsubmit="return confirm('Are you sure you want to delete this Topic Matery <?php echo $DataMaterial['title']; ?> ?')">
+                                        onsubmit="return confirm('Are you sure you want to delete this Data Synonym ?')">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="btn btn-link text-danger">
-                                            <i class="ti ti-trash"></i>
+                                        <button type="submit" class="btn btn-link text-danger text-center">
+                                            <i class="ti ti-trash "></i>
                                         </button>
                                     </form>
                                 </td>

@@ -101,6 +101,31 @@
                     },
                 ]
             });
+            $('#table_synonym').DataTable({
+                responsive: true,
+                "scrollY": "500px",
+                "pageLength": 10, // Set initial page length to 5
+                "lengthMenu": [
+                    [10, 15, 20],
+                    [10, 15, 20]
+                ],
+                columns: [{
+                        width: '6px'
+                    },
+                    {
+                        width: '30px'
+                    },
+                    {
+                        width: '30px'
+                    },
+                    {
+                        width: '8px'
+                    },
+                    {
+                        width: '8px'
+                    },
+                ]
+            });
             $('#table_master').DataTable({
                 responsive: true,
                 "scrollY": "500px",
@@ -152,21 +177,7 @@
                         [10, 15, 20],
                         [10, 15, 20]
                     ],
-                    columns: [{
-                            width: '6px'
-                        },
-                        null,
-                        {
-                            width: '12px'
-                        },
-                        {
-                            width: '12px'
-                        },
-                        {
-                            width: '12px'
-                        },
-                        
-                    ]
+                    autoWidth: false,
                 });
 
                 // ===================== Table Learn Toefl ===================================

@@ -55,7 +55,7 @@
                             <div class="row">
                                 <div class="mb-4 col-lg-12">
                                     <label for="paket" class="form-label">Content</label>
-                                    <textarea type="text" class="form-control" id="content" name="content" aria-describedby="emailHelp" rows="10"
+                                    <textarea type="text" class="form-control" id="content" name="content" aria-describedby="emailHelp" rows="20"
                                         placeholder="Input Content......."> {{$material['content']}} </textarea>
                                 </div>
                             </div>
