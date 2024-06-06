@@ -53,7 +53,9 @@ class SynonymController extends Controller
      */
     public function create()
     {
-        //
+        return view('LearnToefl.Synonym.create', [
+            'title' => 'Tambah Synonym'
+        ]);
     }
 
     /**
@@ -61,7 +63,33 @@ class SynonymController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $access_token = session('access_token');
+        if (!$access_token) {
+            return 'Access Token Not Found';
+        }
+
+        $response = Http::withHeaders([
+            'apikey' => 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZubmVwbm53emxnc2VjdG5ueXljIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTQzNjIxOTAsImV4cCI6MjAyOTkzODE5MH0.IyrWPJ5CbV4wk1Q0sUwqN9Rpdt95IRJ8WQ_-BNS6gmY',
+            'Authorization' => 'Bearer ' . $access_token,
+            'Content-Type' => 'application/json',
+        ])->post('https://vnnepnnwzlgsectnnyyc.supabase.co/rest/v1/synonym', [
+            'word1' => $request->input('word1'),
+            'word2' => $request->input('word2'),
+        ]);
+
+        if ($response->successful()) {
+            session()->flash('success', 'Data Synonym Successfully Added!!!');
+            return redirect('/Synonym');
+        } elseif ($response->status() === 400) {
+            session()->flash('error', 'Bad Request : ' . $response['message']);
+            return redirect('/Synonym');
+        } elseif ($response->status() === 401 && $response->json()['message'] === 'JWT expired') {
+            session()->forget('access_token');
+            session()->flash('error', 'Your Session Has Been End, Please Login Again !!!');
+            return redirect('/');
+        } else {
+            return 'return error response here';
+        }
     }
 
     /**
@@ -77,7 +105,34 @@ class SynonymController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $access_token = session('access_token');
+        if (!$access_token) {
+            return 'Access Token Not Found';
+        }
+
+        $response = Http::withHeaders(([
+            'apikey' => 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZubmVwbm53emxnc2VjdG5ueXljIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTQzNjIxOTAsImV4cCI6MjAyOTkzODE5MH0.IyrWPJ5CbV4wk1Q0sUwqN9Rpdt95IRJ8WQ_-BNS6gmY',
+            'Authorization' => 'Bearer ' . $access_token,
+            'Content-Type' => 'application/json',
+        ]))->get('https://vnnepnnwzlgsectnnyyc.supabase.co/rest/v1/synonym?id=eq.' . $id);
+
+        if ($response->successful()) {
+            $data = $response->json();
+
+            return view('LearnToefl.Synonym.edit', [
+                'title' => 'Show Synonym',
+                'data_synonym' => $data[0],
+            ]);
+        } elseif ($response->status() === 400) {
+            session()->flash('error', 'Bad Request : ' . $response['message']);
+            return redirect('/Synonym');
+        } elseif ($response->status() === 401 && $response->json()['message'] === 'JWT expired') {
+            session()->forget('access_token');
+            session()->flash('error', 'Your Session Has Been End, Please Login Again !!!');
+            return redirect('/');
+        } else {
+            return 'Error Response Here';
+        }
     }
 
     /**
@@ -85,7 +140,33 @@ class SynonymController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $access_token = session('access_token');
+        if (!$access_token) {
+            return 'Access Token Not Found';
+        }
+
+        $response = Http::withHeaders([
+            'apikey' => 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZubmVwbm53emxnc2VjdG5ueXljIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTQzNjIxOTAsImV4cCI6MjAyOTkzODE5MH0.IyrWPJ5CbV4wk1Q0sUwqN9Rpdt95IRJ8WQ_-BNS6gmY',
+            'Authorization' => 'Bearer ' . $access_token,
+            'Content-Type' => 'application/json',
+        ])->patch('https://vnnepnnwzlgsectnnyyc.supabase.co/rest/v1/synonym?id=eq.' . $id, [
+            'word1' => $request->input('word1'),
+            'word2' => $request->input('word2'),
+        ]);
+
+        if ($response->successful()) {
+            session()->flash('success', 'Data Packet Successfully Updated!!!');
+            return redirect('/Synonym');
+        } elseif ($response->status() === 400) {
+            session()->flash('error', 'Bad Request : ' . $response['message']);
+            return redirect('/Synonym');
+        } elseif ($response->status() === 401 && $response->json()['message'] === 'JWT expired') {
+            session()->forget('access_token');
+            session()->flash('error', 'Your Session Has Been End, Please Login Again !!!');
+            return redirect('/');
+        } else {
+            return 'Error Response Here';
+        }
     }
 
     /**

@@ -10,8 +10,8 @@
                             <span class="card-title fw-semibold me-3">Tabel Synonym Matery</span>
                         </div>
                         <div>
-                            <a href="StudyMaterials/create" type="button" class="btn btn-primary"><i class="ti ti-plus me-1"></i>Add
-                                Matery</a>
+                            <a href="Synonym/create" type="button" class="btn btn-primary"><i class="ti ti-plus me-1"></i>Add
+                                Synonym Matery</a>
                         </div>
                     </div>
 
