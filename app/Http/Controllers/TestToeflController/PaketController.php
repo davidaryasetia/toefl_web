@@ -60,6 +60,42 @@ class PaketController extends Controller
         ]);
     }
 
+    public function create_question(string $id)
+    {
+        $access_token = session('access_token');
+        if (!$access_token) {
+            session()->flash('error', 'Your Session Has Been End, Please Login Again !!!');
+            return redirect('/');
+        }
+
+        $response = Http::withHeaders([
+            'apikey' => 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZubmVwbm53emxnc2VjdG5ueXljIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTQzNjIxOTAsImV4cCI6MjAyOTkzODE5MH0.IyrWPJ5CbV4wk1Q0sUwqN9Rpdt95IRJ8WQ_-BNS6gmY',
+            'Authorization' => 'Bearer ' . $access_token,
+            'Content-Type' => 'application/json',
+        ])->get('https://vnnepnnwzlgsectnnyyc.supabase.co/rest/v1/test_packet', [
+            'select' => 'id, name', 
+            'id' => 'eq.' . $id
+        ]);
+
+        if ($response->successful()) {
+            $data = $response->json();
+
+            return view('TestToefl.PaketSoal.create_question', [
+                'title' => 'Paket Soal',
+                'data' => $data,
+            ]);
+        } elseif ($response->status() === 400) {
+            session()->flash('error', 'Bad Request : ' . $response['message']);
+            return redirect('/PaketSoal');
+        } elseif ($response->status() === 401 && $response->json()['message'] === 'JWT expired') {
+            session()->forget('access_token');
+            session()->flash('error', 'Your Session Has Been End, Please Login Again !!!');
+            return redirect('/');
+        } else {
+            return 'return error response here';
+        }     
+    }
+
     /**
      * Store a newly created resource in storage.
      */
@@ -90,6 +126,79 @@ class PaketController extends Controller
             return redirect('/');
         } else {
             return 'return error response here';
+        }
+    }
+
+    public function store_question(Request $request)
+    {
+        $access_token = session('access_token');
+        if (!$access_token) {
+            return 'Access Token Not Found';
+        }
+
+        $packet_id = $request->input('packet_id');
+        $question = $request->input('question');
+        $type_id = $request->input('type_id');
+        $answers = $request->input('answer');
+        $corrects = $request->input('correct');
+
+
+        $response = Http::withHeaders([
+            'apikey' => 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZubmVwbm53emxnc2VjdG5ueXljIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTQzNjIxOTAsImV4cCI6MjAyOTkzODE5MH0.IyrWPJ5CbV4wk1Q0sUwqN9Rpdt95IRJ8WQ_-BNS6gmY',
+            'Authorization' => 'Bearer ' . $access_token,
+            'Content-Type' => 'application/json',
+        ])->post('https://vnnepnnwzlgsectnnyyc.supabase.co/rest/v1/test_question', [
+            'question' => $question, 
+            'type_id' => $type_id, 
+            'packet_id' => $packet_id,
+        ]);
+
+        if ($response->successful()) {
+            $response_answer_id = Http::withHeaders([
+                'apikey' => 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZubmVwbm53emxnc2VjdG5ueXljIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTQzNjIxOTAsImV4cCI6MjAyOTkzODE5MH0.IyrWPJ5CbV4wk1Q0sUwqN9Rpdt95IRJ8WQ_-BNS6gmY',
+                'Authorization' => 'Bearer ' . $access_token,
+                'Content-Type' => 'application/json',
+            ])->get('https://vnnepnnwzlgsectnnyyc.supabase.co/rest/v1/test_question?select=id&order=id.desc&limit=1');
+
+            if ($response_answer_id->successful()) {
+                $last_id = $response_answer_id->json()[0]['id'];
+               
+
+                foreach ($answers as $index => $answer) {
+                    $isCorrect = $corrects[$index];
+                    $insert_answer = Http::withHeaders([
+                        'apikey' => 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZubmVwbm53emxnc2VjdG5ueXljIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTQzNjIxOTAsImV4cCI6MjAyOTkzODE5MH0.IyrWPJ5CbV4wk1Q0sUwqN9Rpdt95IRJ8WQ_-BNS6gmY',
+                        'Authorization' => 'Bearer ' . $access_token,
+                        'Content-Type' => 'application/json',
+                    ])->post('https://vnnepnnwzlgsectnnyyc.supabase.co/rest/v1/test_answer?', [
+                        'question_id' => $last_id,
+                        'answer' => $answer,
+                        'correct' => $isCorrect,
+                    ]);
+
+                    if (!$insert_answer->successful()) {
+                        session()->flash('error', 'Failed to insert answer : ' . $insert_answer->body());
+                        return redirect('/PaketSoal/show_question/'.$packet_id);
+                    }
+                }
+                // If Success
+                if ($insert_answer->successful()) {
+                    session()->flash('success', 'Data Question Successfully Addedd !!!');
+                    return redirect('/PaketSoal/show_question/'.$packet_id);
+                } elseif ($response->status() === 400) {
+                    session()->flash('error', 'Bad Request : ' . $response['message']);
+                    return redirect('/PaketSoal');
+                } else {
+                    session()->flash('error', 'Failed Sumbmit Data');
+                    return redirect('/PaketSoal');
+                }
+            }
+        } elseif ($response->status() === 400) {
+            session()->flash('error', 'Bad Request : ' . $response['message']);
+            return redirect('/PaketSoal');
+        } else {
+            session()->flash('error', 'Failed Sumbmit Data');
+            return redirect('/PaketSoal');
         }
     }
 
@@ -126,11 +235,14 @@ class PaketController extends Controller
         if ($response->successful()) {
             $data = $response->json();
             $data_packet = $response_paket->json();
+            $id_data_packet = $response_paket->json()[0]['id'];
+            
             
             return view('TestToefl.PaketSoal.show', [
                 'title' => 'Show Question Packet',
                 'data' => $data,
                 'data_paket' => $data_packet, 
+                'id_data_paket' => $id_data_packet, 
             ]);
         } elseif ($response->status() === 400) {
             session()->flash('error', 'Bad Request : ' . $response['message']);
