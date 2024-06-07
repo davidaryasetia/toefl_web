@@ -173,7 +173,7 @@ class PaketController extends Controller
                     ])->post('https://vnnepnnwzlgsectnnyyc.supabase.co/rest/v1/test_answer?', [
                         'question_id' => $last_id,
                         'answer' => $answer,
-                        'correct' => $isCorrect,
+                        'is_correct' => $isCorrect,
                     ]);
 
                     if (!$insert_answer->successful()) {
