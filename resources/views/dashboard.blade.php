@@ -15,10 +15,10 @@
                             <div>
                                 <span class="card-title fw-semibold me-3">Best LeaderBoard Test</span>
                             </div>
-                            <div class="me-3">
+                            {{-- <div class="me-3">
                                 <a href="DataSoal/create" type="button" class="btn btn-primary"><i class="ti ti-plus"></i> Export Data
                                     </a>
-                            </div>
+                            </div> --}}
                         </div>
                         <div class="table-responsive">
                             <table id="table_dashboard"

@@ -103,6 +103,16 @@ class PaketController extends Controller
             return 'Access Token Not Found';
         }
 
+        $response_paket = Http::withHeaders(([
+            'apikey' => 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZubmVwbm53emxnc2VjdG5ueXljIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTQzNjIxOTAsImV4cCI6MjAyOTkzODE5MH0.IyrWPJ5CbV4wk1Q0sUwqN9Rpdt95IRJ8WQ_-BNS6gmY',
+            'Authorization' => 'Bearer ' . $access_token,
+            'Content-Type' => 'application/json',
+        ]))->get('https://vnnepnnwzlgsectnnyyc.supabase.co/rest/v1/test_packet?', [
+            'id' => 'eq.' . $id,
+            'select' => 'id,name',
+        ]);
+
+
         $response = Http::withHeaders(([
             'apikey' => 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZubmVwbm53emxnc2VjdG5ueXljIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTQzNjIxOTAsImV4cCI6MjAyOTkzODE5MH0.IyrWPJ5CbV4wk1Q0sUwqN9Rpdt95IRJ8WQ_-BNS6gmY',
             'Authorization' => 'Bearer ' . $access_token,
@@ -115,9 +125,12 @@ class PaketController extends Controller
 
         if ($response->successful()) {
             $data = $response->json();
+            $data_packet = $response_paket->json();
+            
             return view('TestToefl.PaketSoal.show', [
                 'title' => 'Show Question Packet',
                 'data' => $data,
+                'data_paket' => $data_packet, 
             ]);
         } elseif ($response->status() === 400) {
             session()->flash('error', 'Bad Request : ' . $response['message']);
@@ -128,6 +141,54 @@ class PaketController extends Controller
             return redirect('/');
         } else {
             return 'return error response here';
+        }
+    }
+
+    public function show_detail_question(string $id)
+    {
+        $access_token = session('access_token');
+        if (!$access_token) {
+            return 'Access Token Not Found';
+        }
+
+        $response = Http::withHeaders(([
+            'apikey' => 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZubmVwbm53emxnc2VjdG5ueXljIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTQzNjIxOTAsImV4cCI6MjAyOTkzODE5MH0.IyrWPJ5CbV4wk1Q0sUwqN9Rpdt95IRJ8WQ_-BNS6gmY',
+            'Authorization' => 'Bearer ' . $access_token,
+            'Content-Type' => 'application/json',
+        ]))->get('https://vnnepnnwzlgsectnnyyc.supabase.co/rest/v1/test_question?',[
+            'id' => 'eq.' . $id,
+            'select' => 'id,question,packet_id,type(id,name),test_packet(id,name)',
+
+        ]);
+
+        if ($response->successful()) {
+            $data = $response->json();
+            // Ambil ID Anser 
+            $response_answer = Http::withHeaders(([
+                'apikey' => 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZubmVwbm53emxnc2VjdG5ueXljIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTQzNjIxOTAsImV4cCI6MjAyOTkzODE5MH0.IyrWPJ5CbV4wk1Q0sUwqN9Rpdt95IRJ8WQ_-BNS6gmY',
+                'Authorization' => 'Bearer ' . $access_token,
+                'Content-Type' => 'application/json',
+            ]))->get('https://vnnepnnwzlgsectnnyyc.supabase.co/rest/v1/test_answer?', [
+                'question_id' => 'eq.' . $id,
+            ]);
+
+            if ($response_answer->successful()) {
+                $data_answer = $response_answer->json();
+                return view('TestToefl.PaketSoal.show_detail_question', [
+                    'title' => 'Edit Soal',
+                    'DataSoal' => $data,
+                    'DataAnswer' => $data_answer,
+                ]);
+            }
+        } elseif ($response->status() === 400) {
+            session()->flash('error', 'Bad Request : ' . $response['message']);
+            return redirect('/DataSoal');
+        } elseif ($response->status() === 401 && $response->json()['message'] === 'JWT expired') {
+            session()->forget('access_token');
+            session()->flash('error', 'Your Session Has Been End, Please Login Again !!!');
+            return redirect('/');
+        } else {
+            return 'Error Response Here';
         }
     }
 
@@ -236,7 +297,31 @@ class PaketController extends Controller
 
     public function destroy_question(string $id)
     {
+        $access_token = session('access_token');
+            if (!$access_token) {
+                return 'Access Token Not Found';
+            }
 
+            $response = Http::withHeaders([
+                'apikey' => 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZubmVwbm53emxnc2VjdG5ueXljIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTQzNjIxOTAsImV4cCI6MjAyOTkzODE5MH0.IyrWPJ5CbV4wk1Q0sUwqN9Rpdt95IRJ8WQ_-BNS6gmY',
+                'Authorization' => 'Bearer ' . $access_token,
+                'Content-Type' => 'application/json',
+            ])->delete('https://vnnepnnwzlgsectnnyyc.supabase.co/rest/v1/test_question?id=eq.' . $id);
+
+
+            if ($response->successful()) {
+                session()->flash('success', 'Data Question Successfully Delete!!!');
+                return back();
+            } elseif ($response->status() === 400) {
+                session()->flash('error', 'Bad Request : ' . $response['message']);
+                return back();
+            } elseif ($response->status() === 401 && $response->json()['message'] === 'JWT expired') {
+                session()->forget('access_token');
+                session()->flash('error', 'Your Session Has Been End, Please Login Again !!!');
+                return back();
+            } else {
+                return 'Error Response Here';
+            }
     }
 
     

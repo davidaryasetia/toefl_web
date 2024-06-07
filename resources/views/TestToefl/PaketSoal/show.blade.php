@@ -16,7 +16,7 @@
                             </a>
                         </div>
                         <div class="me-2">
-                            <span class="card-title fw-semibold me-3">List Question : {{$data[0]['test_packet']['name']}}</span>
+                            <span class="card-title fw-semibold me-3">List Question : {{ $data_paket[0]['name'] }}</span>
                         </div>
                         <div class="me-3">
                             <a href="DataSoal/create" type="button" class="btn btn-primary"><i class="ti ti-plus"></i> Add
@@ -96,9 +96,9 @@
                                 <th class="border-bottom-0">
                                     <h6 class="fw-semibold mb-0">Edit</h6>
                                 </th>
-                                    {{-- <th class="border-bottom-0">
-                                        <h6 class="fw-semibold mb-0">Delete</h6>
-                                    </th> --}}
+                                <th class="border-bottom-0">
+                                    <h6 class="fw-semibold mb-0">Delete</h6>
+                                </th>
 
                             </tr>
                         </thead>
@@ -107,18 +107,20 @@
                             <?php foreach($data as $question): ?>
                             <tr>
                                 <td class="border-bottom-0 text-center" style="width: 12px">
-                                    <h6 class="fw-semibold mb-0"> {{$number++}} </h6>
+                                    <h6 class="fw-semibold mb-0"> {{ $number++ }} </h6>
                                 </td>
                                 <td class=""
                                     style="width: 100%; white-space: pre-line; word-wrap: break-word; text-align: justify; color: black">
-                                    <span class="d-flex align-items-center"
-                                        style="text-align: justify"> {{$question['question']}} </span>
+                                    <span class="d-flex align-items-center" style="text-align: justify">
+                                        {{ $question['question'] }} </span>
                                 </td>
                                 <td class="border-bottom-0" style="width: 12px">
-                                    <h6 class="fw-semibold mb-1 text-center">{{$question['type']['name']}} </h6>
+                                    <h6 class="fw-semibold mb-1 text-center">{{ $question['type']['name'] }} </h6>
                                 </td>
                                 <td class="border-bottom-0">
-                                    <p class="mb-0 fw-normal text-center"><a href="{{ route('DataSoal.show', ['DataSoal' => $question['id']]) }}"><i class="ti ti-eye"></i></a>
+                                    <p class="mb-0 fw-normal text-center"><a
+                                            href="/PaketSoal/show_detail_question/{{ $question['id'] }}"><i
+                                                class="ti ti-eye"></i></a>
                                     </p>
                                 </td>
                                 <td class="border-bottom-0">
@@ -126,17 +128,17 @@
                                             href="{{ route('DataSoal.edit', ['DataSoal' => $question['id']]) }}"><i
                                                 class="ti ti-pencil"></i></a></p>
                                 </td>
-                                {{-- <td class="border-bottom-0">
-                                    <form action=""
+                                <td class="border-bottom-0">
+                                    <form action="{{ route('PaketSoal.destroy_question', $question['id']) }}"
                                         method="POST"
-                                        onsubmit="return confirm('Are you sure you want to delete this data: ">
+                                        onsubmit="return confirm('Are you sure you want to delete this Question <?php echo $question['question']; ?> ?')">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-link text-danger">
                                             <i class="ti ti-trash"></i>
                                         </button>
                                     </form>
-                                </td> --}}
+                                </td>
                             </tr>
                             <?php endforeach ?>
                         </tbody>

@@ -90,12 +90,7 @@ class MaterialController extends Controller
             return redirect('/');
         } else {
             return 'return error response here';
-        }
-
-
-
-
-     
+        }     
     }
     
 

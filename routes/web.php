@@ -45,12 +45,19 @@ Route::middleware([AuthenticateMiddleware::class])->group(function () {
     // Route Learn Toefl
     Route::resource('/StudyMaterials', MaterialController::class);
     Route::get('/StudyMaterials/question/create/{id}', [MaterialController::class, 'create_question']);
+    // Route::get('/PaketSoal/question/create/{id}', [PaketController::class, 'create_question']);
+
     Route::post('/StudyMaterials/question/store', [MaterialController::class, 'store_question'])->name('StudyMaterials.store_question');
+    // Route::post('/PaketSoal/question/store', [PaketController::class, 'store_question'])->name('PaketSoal.store_question');
+
+
     Route::get('/StudyMaterials/show_question/{id}', [MaterialController::class, 'show_question']);
     Route::get('/StudyMaterials/show_detail_question/{id}', [MaterialController::class, 'show_detail_question']);
+    Route::get('/PaketSoal/show_detail_question/{id}', [PaketController::class, 'show_detail_question']);
     Route::get('/StudyMaterials/edit_detail_question/{id}', [MaterialController::class, 'edit_detail_question']);
     Route::patch('/StudyMaterials/update_detail_question/{id}', [MaterialController::class, 'update_detail_question'])->name('StudyMaterials.update_detail_question');
     Route::delete('/StudyMaterials/question/delete/{id}', [MaterialController::class, 'destroy_question'])->name('StudyMaterials.destroy_question');
+    Route::delete('/PaketSoal/question/delete/{id}', [PaketController::class, 'destroy_question'])->name('PaketSoal.destroy_question');
     Route::resource('/LearnQuestion', LearnQuestionController::class);
     Route::resource('/Synonym', SynonymController::class);
 });
